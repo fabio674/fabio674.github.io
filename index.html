@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fabio Salvador — Industrial Designer & Consultant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --grey-50: #f7f7f6;
+    --grey-100: #ebebea;
+    --grey-200: #d4d4d2;
+    --grey-400: #8f8f8c;
+    --grey-600: #555553;
+    --grey-800: #2a2a28;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --blue-dark: #0C447C;
+    --font: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--white);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 4rem;
+    border-bottom: 1px solid var(--grey-100);
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--grey-600);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--black); }
+  .nav-links a.cta {
+    color: var(--blue);
+    font-weight: 500;
+  }
+  .nav-links a.cta:hover { color: var(--blue-dark); }
+
+  /* SECTIONS */
+  section { padding: 7rem 4rem; }
+  section + section { border-top: 1px solid var(--grey-100); }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 40px;
+    background: var(--blue);
+    opacity: 0.4;
+  }
+
+  /* HERO */
+  #hero {
+    padding: 9rem 4rem 8rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--blue);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+  .hero-title {
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--black);
+    max-width: 760px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-title strong {
+    font-weight: 600;
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--grey-600);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 4rem;
+    font-weight: 300;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--grey-100);
+  }
+  .stat-num {
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--black);
+    letter-spacing: -0.02em;
+    display: block;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--grey-400);
+    margin-top: 4px;
+    display: block;
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+  }
+
+  /* CONSULTANCY */
+  #consultancy { max-width: 1200px; margin: 0 auto; }
+  .mip-banner {
+    background: var(--black);
+    border-radius: 4px;
+    padding: 3.5rem 4rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+  }
+  .mip-title {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300;
+    color: var(--white);
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+  .mip-title span { color: var(--blue); font-weight: 600; }
+  .mip-meta {
+    text-align: right;
+  }
+  .mip-meta p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.08em;
+    line-height: 2;
+  }
+  .mip-meta p strong {
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--grey-100);
+    border: 1px solid var(--grey-100);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .service-card {
+    background: var(--white);
+    padding: 2.5rem;
+    transition: background 0.2s;
+  }
+  .service-card:hover { background: var(--grey-50); }
+  .service-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--blue);
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5rem;
+  }
+  .service-title {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .service-desc {
+    font-size: 14px;
+    color: var(--grey-600);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .service-geo {
+    margin-top: 1.5rem;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--blue);
+    letter-spacing: 0.06em;
+  }
+
+  /* CARDS GRID */
+  .cards-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+  }
+  .cards-header h2 {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--grey-400);
+    font-family: var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .view-all {
+    font-size: 13px;
+    color: var(--blue);
+    text-decoration: none;
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+  }
+  .view-all:hover { color: var(--blue-dark); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--grey-100);
+    border: 1px solid var(--grey-100);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .project-card {
+    background: var(--white);
+    transition: background 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-card:hover { background: var(--grey-50); }
+  .project-card.wide { grid-column: span 2; }
+  .card-thumb {
+    aspect-ratio: 16/9;
+    background: var(--grey-50);
+    border-bottom: 1px solid var(--grey-100);
+    overflow: hidden;
+    position: relative;
+  }
+  .card-thumb-label {
+    position: absolute;
+    bottom: 1rem;
+    left: 1.25rem;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--grey-400);
+    text-transform: uppercase;
+  }
+  .card-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; }
+  .card-category {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--grey-400);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--black);
+    line-height: 1.35;
+    margin-bottom: 0.75rem;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--grey-600);
+    line-height: 1.65;
+    font-weight: 300;
+    flex: 1;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--grey-100);
+  }
+  .card-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--grey-400);
+  }
+  .card-arrow {
+    font-size: 14px;
+    color: var(--blue);
+    transition: transform 0.2s;
+  }
+  .project-card:hover .card-arrow { transform: translateX(4px); }
+
+  /* DIY STRIP */
+  .diy-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--grey-100);
+    border: 1px solid var(--grey-100);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .diy-card {
+    background: var(--white);
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .diy-card:hover { background: var(--grey-50); }
+  .diy-thumb {
+    aspect-ratio: 4/3;
+    background: var(--grey-50);
+    border-bottom: 1px solid var(--grey-100);
+  }
+  .diy-body { padding: 1.25rem; }
+  .diy-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .diy-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--grey-400);
+    text-transform: uppercase;
+  }
+
+  /* ART */
+  .art-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--grey-100);
+    border: 1px solid var(--grey-100);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  /* CONTACT STRIP */
+  #contact {
+    background: var(--black);
+    padding: 6rem 4rem;
+    text-align: center;
+  }
+  #contact .section-label {
+    color: rgba(255,255,255,0.3);
+    justify-content: center;
+  }
+  #contact .section-label::after { background: rgba(255,255,255,0.2); }
+  #contact h2 {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 300;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  #contact p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .cta-btn:hover {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--white);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--grey-100);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--grey-400);
+    letter-spacing: 0.04em;
+  }
+  footer a {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--grey-400);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  footer a:hover { color: var(--blue); }
+
+  /* FADE IN */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1.25rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    #hero { padding: 5rem 1.5rem 4rem; }
+    #contact { padding: 4rem 1.5rem; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .services-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.wide { grid-column: span 1; }
+    .diy-grid { grid-template-columns: repeat(2, 1fr); }
+    .art-grid { grid-template-columns: 1fr; }
+    .mip-banner { flex-direction: column; gap: 2rem; padding: 2.5rem; }
+    .mip-meta { text-align: left; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">FABIO SALVADOR</a>
+  <ul class="nav-links">
+    <li><a href="#consultancy">Made in Portugal</a></li>
+    <li><a href="#design">Industrial design</a></li>
+    <li><a href="#ideas">Ideas</a></li>
+    <li><a href="#diy">DIY</a></li>
+    <li><a href="#art">Art & media</a></li>
+    <li><a href="#contact" class="cta">Contact →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <p class="hero-eyebrow fade-in">Industrial designer · Consultant · Maker</p>
+  <h1 class="hero-title fade-in">Work across <strong>design,</strong> manufacturing <strong>and ideas</strong></h1>
+  <p class="hero-sub fade-in">Based in Portugal. I design physical products, help companies build supply chains across the Iberian peninsula, and document everything I make — finished or not.</p>
+  <div class="hero-stats fade-in">
+    <div>
+      <span class="stat-num">15+</span>
+      <span class="stat-label">Years in industrial design</span>
+    </div>
+    <div>
+      <span class="stat-num">PT · ES</span>
+      <span class="stat-label">Primary consulting regions</span>
+    </div>
+    <div>
+      <span class="stat-num">40+</span>
+      <span class="stat-label">Projects documented</span>
+    </div>
+  </div>
+</div>
+
+<!-- CONSULTANCY -->
+<section id="consultancy">
+  <div class="section-label fade-in">Made in Portugal</div>
+  <div class="mip-banner fade-in">
+    <div>
+      <div class="mip-title">Made in<br><span>Portugal</span></div>
+    </div>
+    <div class="mip-meta">
+      <p><strong>Sourcing</strong> · Supply chain</p>
+      <p><strong>Quality control</strong> · Factory audits</p>
+      <p><strong>Innovation</strong> · Advisory</p>
+      <p style="margin-top:1rem; color:rgba(255,255,255,0.25);">Portugal · Spain · On-site available</p>
+    </div>
+  </div>
+  <div class="services-grid fade-in">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-title">Sourcing & supply chain</div>
+      <div class="service-desc">Building reliable routes from Portuguese and Spanish manufacturers to European and global markets. From factory identification to logistics setup.</div>
+      <div class="service-geo">Portugal · Spain</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-title">Quality control</div>
+      <div class="service-desc">Factory audits, production oversight and QC frameworks for physical goods manufacturing. On-site presence when it matters most.</div>
+      <div class="service-geo">On-site available</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-title">Innovation advisory</div>
+      <div class="service-desc">NPD roadmapping, project management and manufacturing feasibility for product companies entering or scaling in Iberia.</div>
+      <div class="service-geo">Remote · Iberia</div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIAL DESIGN -->
+<section id="design">
+  <div class="cards-header fade-in">
+    <h2>Industrial design</h2>
+    <a href="#" class="view-all">View all →</a>
+  </div>
+  <div class="projects-grid fade-in">
+    <a href="#" class="project-card wide">
+      <div class="card-thumb">
+        <span class="card-thumb-label">Makers Department</span>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Makers Department</div>
+        <div class="card-title">Modular shelving system for residential market</div>
+        <div class="card-desc">Full NPD cycle from brief to production — materials specification, tooling review, and supplier coordination with Portuguese manufacturers.</div>
+        <div class="card-footer">
+          <span class="card-tag">Furniture · Portugal</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="project-card">
+      <div class="card-thumb">
+        <span class="card-thumb-label">External</span>
+      </div>
+      <div class="card-body">
+        <div class="card-category">External collaboration</div>
+        <div class="card-title">Packaging system for artisan food brand</div>
+        <div class="card-desc">Structural packaging design for a Spanish artisan food producer, from concept through to production files.</div>
+        <div class="card-footer">
+          <span class="card-tag">Packaging · ES</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- IDEAS -->
+<section id="ideas">
+  <div class="cards-header fade-in">
+    <h2>Innovations & ideas</h2>
+    <a href="#" class="view-all">Browse catalogue →</a>
+  </div>
+  <div class="projects-grid fade-in">
+    <a href="#" class="project-card">
+      <div class="card-thumb" style="background:#EEF4FB;">
+        <span class="card-thumb-label">Sketch → Render</span>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Sketch-to-render · Physical</div>
+        <div class="card-title">Compact urban composting unit</div>
+        <div class="card-desc">A kitchen-scale composter for apartment living. Original 2019 sketch, AI-rendered.</div>
+        <div class="card-footer">
+          <span class="card-tag">Physical · Unrealised</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="project-card">
+      <div class="card-thumb">
+        <span class="card-thumb-label">Digital concept</span>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Digital idea</div>
+        <div class="card-title">Factory floor inspection app</div>
+        <div class="card-desc">Mobile-first QC checklist tool for small manufacturers. Designed, never built.</div>
+        <div class="card-footer">
+          <span class="card-tag">Software · Concept</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="project-card">
+      <div class="card-thumb">
+        <span class="card-thumb-label">Product concept</span>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Product concept</div>
+        <div class="card-title">Modular outdoor furniture kit</div>
+        <div class="card-desc">Flat-pack seating system optimised for Portuguese cork and pine. Iberian materials, European market.</div>
+        <div class="card-footer">
+          <span class="card-tag">Furniture · Concept</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- DIY -->
+<section id="diy">
+  <div class="cards-header fade-in">
+    <h2>DIY</h2>
+    <a href="#" class="view-all">See all builds →</a>
+  </div>
+  <div class="diy-grid fade-in">
+    <div class="diy-card">
+      <div class="diy-thumb"></div>
+      <div class="diy-body">
+        <div class="diy-label">Workshop bench build</div>
+        <div class="diy-sub">Construction</div>
+      </div>
+    </div>
+    <div class="diy-card">
+      <div class="diy-thumb"></div>
+      <div class="diy-body">
+        <div class="diy-label">Bathroom tile repair</div>
+        <div class="diy-sub">Fix</div>
+      </div>
+    </div>
+    <div class="diy-card">
+      <div class="diy-thumb"></div>
+      <div class="diy-body">
+        <div class="diy-label">Cable management hack</div>
+        <div class="diy-sub">Hack</div>
+      </div>
+    </div>
+    <div class="diy-card">
+      <div class="diy-thumb"></div>
+      <div class="diy-body">
+        <div class="diy-label">Garden irrigation rig</div>
+        <div class="diy-sub">Build</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ART & MEDIA -->
+<section id="art">
+  <div class="cards-header fade-in">
+    <h2>Art & media</h2>
+    <a href="#" class="view-all">Explore →</a>
+  </div>
+  <div class="art-grid fade-in">
+    <a href="#" class="project-card">
+      <div class="card-thumb" style="aspect-ratio: 3/2;"></div>
+      <div class="card-body">
+        <div class="card-category">Visual craft</div>
+        <div class="card-title">Industrial landscapes — photography series</div>
+        <div class="card-desc">Documenting factory floors and production spaces across Portugal and Spain.</div>
+        <div class="card-footer">
+          <span class="card-tag">Photography</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="project-card">
+      <div class="card-thumb" style="aspect-ratio: 3/2;"></div>
+      <div class="card-body">
+        <div class="card-category">Writing</div>
+        <div class="card-title">Notes on making things in Southern Europe</div>
+        <div class="card-desc">Essays on manufacturing culture, craft traditions, and what gets lost in production.</div>
+        <div class="card-footer">
+          <span class="card-tag">Essay</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get in touch</div>
+  <h2>Working on something<br>that needs making?</h2>
+  <p>Industrial design, Iberian manufacturing, or just an idea worth talking through.</p>
+  <a href="mailto:hello@fabiosalvador.com" class="cta-btn">hello@fabiosalvador.com</a>
+</section>
+
+<footer>
+  <p>© 2025 Fabio Salvador</p>
+  <a href="https://makersdepartment.com" target="_blank">makersdepartment.com →</a>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
