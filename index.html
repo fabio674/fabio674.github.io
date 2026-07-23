@@ -3,746 +3,921 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fabio Salvador — Industrial Designer & Consultant</title>
+<title>Fábio Salvador | Industrial Designer</title>
+<meta name="description" content="Selected industrial design work by Fábio Salvador — automotive, IoT, medtech, robotics and consumer electronics products taken from prototype to market.">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* ════════ LIGHT PALETTE — tones of white & light grey, thin orange accents ════════ */
   :root {
-    --black: #0a0a0a;
-    --white: #ffffff;
-    --grey-50: #f7f7f6;
-    --grey-100: #ebebea;
-    --grey-200: #d4d4d2;
-    --grey-400: #8f8f8c;
-    --grey-600: #555553;
-    --grey-800: #2a2a28;
-    --blue: #185FA5;
-    --blue-light: #E6F1FB;
-    --blue-dark: #0C447C;
-    --font: 'IBM Plex Sans', sans-serif;
-    --mono: 'IBM Plex Mono', monospace;
+    --bg: #F5F5F3;          /* page background — warm light grey  */
+    --paper: #FFFFFF;       /* panels & cards                     */
+    --ink: #1D1D1B;         /* near-black — used sparingly        */
+    --title: #7C7B74;       /* medium grey — display titles       */
+    --body-text: #5C5C57;   /* body copy grey                     */
+    --mid: #8F8F8A;         /* secondary grey                     */
+    --faint: #B9B9B4;       /* faintest text                      */
+    --line: #E5E5E1;        /* hairline borders                   */
+    --accent: #E8641B;      /* orange — used thin & sparingly     */
   }
 
-  html { scroll-behavior: smooth; }
+  html, body { width: 100%; min-height: 100vh; }
 
   body {
-    font-family: var(--font);
-    background: var(--white);
-    color: var(--black);
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', sans-serif;
   }
 
-  /* NAV */
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2rem 4rem;
-    border-bottom: 1px solid var(--grey-100);
-    position: sticky;
-    top: 0;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(8px);
-    z-index: 100;
-  }
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    color: var(--black);
-    text-decoration: none;
-  }
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: 13px;
-    color: var(--grey-600);
-    text-decoration: none;
-    letter-spacing: 0.02em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--black); }
-  .nav-links a.cta {
-    color: var(--blue);
-    font-weight: 500;
-  }
-  .nav-links a.cta:hover { color: var(--blue-dark); }
+  a { color: inherit; text-decoration: none; }
 
-  /* SECTIONS */
-  section { padding: 7rem 4rem; }
-  section + section { border-top: 1px solid var(--grey-100); }
-
-  .section-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    color: var(--blue);
-    text-transform: uppercase;
-    margin-bottom: 4rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .section-label::after {
-    content: '';
-    display: block;
-    height: 1px;
-    width: 40px;
-    background: var(--blue);
-    opacity: 0.4;
-  }
-
-  /* HERO */
-  #hero {
-    padding: 9rem 4rem 8rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .hero-eyebrow {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--blue);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 2.5rem;
-  }
-  .hero-title {
-    font-size: clamp(42px, 6vw, 72px);
-    font-weight: 300;
-    line-height: 1.08;
-    letter-spacing: -0.025em;
-    color: var(--black);
-    max-width: 760px;
-    margin-bottom: 2.5rem;
-  }
-  .hero-title strong {
-    font-weight: 600;
-  }
-  .hero-sub {
-    font-size: 17px;
-    color: var(--grey-600);
-    line-height: 1.75;
-    max-width: 520px;
-    margin-bottom: 4rem;
-    font-weight: 300;
-  }
-  .hero-stats {
-    display: flex;
-    gap: 4rem;
-    padding-top: 3rem;
-    border-top: 1px solid var(--grey-100);
-  }
-  .stat-num {
-    font-size: 28px;
-    font-weight: 300;
-    color: var(--black);
-    letter-spacing: -0.02em;
-    display: block;
-  }
-  .stat-label {
-    font-size: 12px;
-    color: var(--grey-400);
-    margin-top: 4px;
-    display: block;
-    font-family: var(--mono);
-    letter-spacing: 0.04em;
-  }
-
-  /* CONSULTANCY */
-  #consultancy { max-width: 1200px; margin: 0 auto; }
-  .mip-banner {
-    background: var(--black);
-    border-radius: 4px;
-    padding: 3.5rem 4rem;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 3rem;
-  }
-  .mip-title {
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 300;
-    color: var(--white);
-    letter-spacing: -0.025em;
-    line-height: 1.1;
-  }
-  .mip-title span { color: var(--blue); font-weight: 600; }
-  .mip-meta {
-    text-align: right;
-  }
-  .mip-meta p {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: rgba(255,255,255,0.45);
-    letter-spacing: 0.08em;
-    line-height: 2;
-  }
-  .mip-meta p strong {
-    color: rgba(255,255,255,0.8);
-    font-weight: 500;
-  }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--grey-100);
-    border: 1px solid var(--grey-100);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .service-card {
-    background: var(--white);
-    padding: 2.5rem;
-    transition: background 0.2s;
-  }
-  .service-card:hover { background: var(--grey-50); }
-  .service-num {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--blue);
-    letter-spacing: 0.08em;
-    margin-bottom: 1.5rem;
-  }
-  .service-title {
-    font-size: 17px;
-    font-weight: 500;
-    color: var(--black);
-    margin-bottom: 1rem;
-    line-height: 1.3;
-  }
-  .service-desc {
-    font-size: 14px;
-    color: var(--grey-600);
-    line-height: 1.7;
-    font-weight: 300;
-  }
-  .service-geo {
-    margin-top: 1.5rem;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--blue);
-    letter-spacing: 0.06em;
-  }
-
-  /* CARDS GRID */
-  .cards-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 2.5rem;
-  }
-  .cards-header h2 {
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--grey-400);
-    font-family: var(--mono);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .view-all {
-    font-size: 13px;
-    color: var(--blue);
-    text-decoration: none;
-    font-family: var(--mono);
-    letter-spacing: 0.04em;
-  }
-  .view-all:hover { color: var(--blue-dark); }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--grey-100);
-    border: 1px solid var(--grey-100);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .project-card {
-    background: var(--white);
-    transition: background 0.2s;
-    cursor: pointer;
-    text-decoration: none;
+  /* ════════ LAYOUT ════════ */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 320px;
+    padding: 36px 28px 28px 32px;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    background-color: var(--paper);
+    border-right: 1px solid var(--line);
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
   }
-  .project-card:hover { background: var(--grey-50); }
-  .project-card.wide { grid-column: span 2; }
-  .card-thumb {
-    aspect-ratio: 16/9;
-    background: var(--grey-50);
-    border-bottom: 1px solid var(--grey-100);
-    overflow: hidden;
-    position: relative;
+
+  .main {
+    margin-left: 320px;
+    padding: 40px 40px 60px 40px;
+    min-height: 100vh;
   }
-  .card-thumb-label {
-    position: absolute;
-    bottom: 1rem;
-    left: 1.25rem;
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    color: var(--grey-400);
+
+  /* ════════ SIDEBAR — LOGO ════════ */
+  .side-logo { display: block; margin-bottom: 10px; }
+  .side-logo img { width: 100%; max-width: 240px; display: block; }
+  .side-logo__rule { height: 1px; background-color: var(--accent); margin-top: 12px; }
+
+  /* ════════ SIDEBAR — DATE / LOCATION ════════ */
+  .side-meta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
     text-transform: uppercase;
-  }
-  .card-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; }
-  .card-category {
-    font-family: var(--mono);
     font-size: 10px;
-    letter-spacing: 0.1em;
-    color: var(--grey-400);
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
+    letter-spacing: 0.25em;
+    line-height: 2.1;
+    margin-top: 16px;
+    margin-bottom: 26px;
   }
-  .card-title {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--black);
-    line-height: 1.35;
-    margin-bottom: 0.75rem;
-  }
-  .card-desc {
-    font-size: 13px;
-    color: var(--grey-600);
-    line-height: 1.65;
-    font-weight: 300;
-    flex: 1;
-  }
-  .card-footer {
+  .side-meta__date { color: var(--mid); display: block; }
+  .side-meta__loc { color: var(--mid); display: block; }
+  .side-meta__loc--alt { color: var(--faint); }
+
+  /* ════════ SIDEBAR — NAV LIST ════════ */
+  .nav-list { display: flex; flex-direction: column; gap: 2px; margin-bottom: 32px; }
+
+  .nav-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-top: 1.5rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--grey-100);
+    gap: 12px;
+    padding: 8px 10px 8px 8px;
+    margin-left: -8px;
+    border-radius: 3px;
+    transition: background-color 0.15s;
   }
-  .card-tag {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    color: var(--grey-400);
-  }
-  .card-arrow {
-    font-size: 14px;
-    color: var(--blue);
-    transition: transform 0.2s;
-  }
-  .project-card:hover .card-arrow { transform: translateX(4px); }
+  .nav-item:hover { background-color: var(--bg); }
+  .nav-item.is-active { background-color: var(--bg); box-shadow: inset 2px 0 0 var(--accent); }
 
-  /* DIY STRIP */
-  .diy-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--grey-100);
-    border: 1px solid var(--grey-100);
-    border-radius: 4px;
-    overflow: hidden;
+  .nav-item__thumb {
+    width: 52px;
+    height: 36px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 2px;
+    border: 1px solid var(--line);
+    filter: grayscale(1) contrast(0.9);
+    transition: filter 0.2s;
   }
-  .diy-card {
-    background: var(--white);
-    padding: 0;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .diy-card:hover { background: var(--grey-50); }
-  .diy-thumb {
-    aspect-ratio: 4/3;
-    background: var(--grey-50);
-    border-bottom: 1px solid var(--grey-100);
-  }
-  .diy-body { padding: 1.25rem; }
-  .diy-label {
-    font-size: 14px;
+  .nav-item:hover .nav-item__thumb,
+  .nav-item.is-active .nav-item__thumb { filter: grayscale(0.3); }
+
+  .nav-item__text { min-width: 0; }
+
+  .nav-item__title {
+    font-family: 'Barlow Condensed', sans-serif;
     font-weight: 500;
-    color: var(--black);
-    margin-bottom: 4px;
-  }
-  .diy-sub {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    color: var(--grey-400);
     text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: var(--title);
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .nav-item:hover .nav-item__title,
+  .nav-item.is-active .nav-item__title { color: var(--ink); }
+
+  .nav-item__desc {
+    font-size: 11px;
+    color: var(--mid);
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  /* ART */
-  .art-grid {
+  /* ════════ SIDEBAR — FOOT (social links only) ════════ */
+  .side-foot { margin-top: auto; display: flex; flex-direction: column; gap: 8px; padding-top: 24px; border-top: 1px solid var(--line); }
+
+  .side-foot a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--mid);
+    transition: color 0.2s;
+  }
+  .side-foot a:hover { color: var(--accent); }
+
+  /* ════════ MAIN — VIEWS ════════ */
+  .view { display: none; }
+  .view.is-visible { display: block; }
+
+  /* ── HOME: cards grid (2 per row on desktop) ── */
+  .cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--grey-100);
-    border: 1px solid var(--grey-100);
-    border-radius: 4px;
-    overflow: hidden;
+    gap: 40px 32px;
   }
 
-  /* CONTACT STRIP */
-  #contact {
-    background: var(--black);
-    padding: 6rem 4rem;
-    text-align: center;
+  .card { display: block; }
+  .card__img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    background-color: var(--paper);
+    border: 1px solid var(--line);
+    filter: grayscale(0.5);
+    transition: filter 0.25s, border-color 0.25s;
+    display: block;
   }
-  #contact .section-label {
-    color: rgba(255,255,255,0.3);
-    justify-content: center;
-  }
-  #contact .section-label::after { background: rgba(255,255,255,0.2); }
-  #contact h2 {
-    font-size: clamp(28px, 4vw, 48px);
-    font-weight: 300;
-    color: var(--white);
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
-  #contact p {
-    font-size: 16px;
-    color: rgba(255,255,255,0.45);
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .cta-btn {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    border: 1px solid rgba(255,255,255,0.25);
-    color: var(--white);
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.1em;
+  .card:hover .card__img { filter: grayscale(0); border-color: var(--accent); }
+
+  .card__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
     text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 2px;
-    transition: all 0.2s;
+    font-size: 16px;
+    letter-spacing: 0.12em;
+    color: var(--title);
+    margin-top: 14px;
+    display: block;
   }
-  .cta-btn:hover {
-    background: var(--white);
-    color: var(--black);
-    border-color: var(--white);
+  .card__text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--body-text);
+    margin-top: 4px;
+    display: block;
+    max-width: 46ch;
   }
 
-  /* FOOTER */
-  footer {
-    padding: 2rem 4rem;
-    border-top: 1px solid var(--grey-100);
+  /* ── PROJECT VIEW ── */
+  .project__hero {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    background-color: var(--paper);
+    border: 1px solid var(--line);
+    display: block;
+    margin-bottom: 32px;
+  }
+
+  .project__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 34px;
+    letter-spacing: 0.02em;
+    color: var(--title);
+    margin-bottom: 24px;
+  }
+
+  .panels {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 24px;
+  }
+
+  .panel {
+    background-color: var(--paper);
+    border: 1px solid var(--line);
+    padding: 28px;
+  }
+
+  .panel__label,
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
     display: flex;
     align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .section-label::before {
+    content: "";
+    width: 20px; height: 1px;
+    background-color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .panel__body { font-size: 14px; line-height: 1.75; color: var(--body-text); }
+
+  .panel__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .panel__links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--mid);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 5px 10px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .panel__links a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ════════ ABOUT / CV VIEW ════════ */
+  .cv { max-width: 900px; }
+
+  /* Header row: small portrait + intro text (no big name — the logo already says it) */
+  .cv__head {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    margin-bottom: 18px;
+  }
+  .cv__portrait {
+    width: 96px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid var(--line);
+    filter: grayscale(1);
+    display: block;
+  }
+  .cv__role { font-size: 17px; color: var(--ink); font-weight: 500; margin-bottom: 4px; }
+  .cv__sub { font-size: 13px; color: var(--mid); margin-bottom: 12px; }
+
+  .cv__badge {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 6px 12px;
+    margin-bottom: 22px;
+  }
+
+  .cv__contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    font-size: 13px;
+    color: var(--body-text);
+    margin-bottom: 28px;
+  }
+  .cv__contact a { color: var(--body-text); transition: color 0.2s; }
+  .cv__contact a:hover { color: var(--accent); }
+
+  .cv__rule { height: 1px; background-color: var(--accent); margin: 0 0 32px; }
+
+  .cv__section { margin-bottom: 36px; }
+
+  .cv__body { font-size: 14px; line-height: 1.85; color: var(--body-text); max-width: 70ch; }
+  .cv__body a { color: var(--accent); border-bottom: 1px solid rgba(232,100,27,0.3); }
+
+  /* What I offer — 3 columns */
+  .cv__offer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .cv__offer h3 {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .cv__offer p { font-size: 13px; line-height: 1.6; color: var(--body-text); }
+
+  /* Pills (core skills, clients) */
+  .cv__pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cv__pill {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--body-text);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 6px 10px;
+  }
+  .cv__pill--accent { color: var(--accent); border-color: rgba(232,100,27,0.4); }
+
+  /* Experience */
+  .cv__job { margin-bottom: 24px; }
+  .cv__job-head {
+    display: flex;
     justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
   }
-  footer p {
-    font-family: var(--mono);
+  .cv__job-title {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--ink);
+  }
+  .cv__job-title span { font-weight: 400; font-size: 13px; color: var(--mid); }
+  .cv__job-date {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
     font-size: 11px;
-    color: var(--grey-400);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    white-space: nowrap;
   }
-  footer a {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--grey-400);
-    text-decoration: none;
-    letter-spacing: 0.04em;
+  .cv__job-org { font-size: 13px; color: var(--mid); margin: 2px 0 10px; }
+  .cv__job ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .cv__job li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--body-text);
   }
-  footer a:hover { color: var(--blue); }
+  .cv__job li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 9px;
+    width: 5px; height: 5px;
+    background-color: var(--accent);
+    border-radius: 50%;
+  }
+  .cv__earlier { font-size: 13px; line-height: 1.7; color: var(--mid); margin-top: 4px; }
+  .cv__earlier strong { color: var(--body-text); font-weight: 500; }
 
-  /* FADE IN */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /* Education + Languages — 2 columns */
+  .cv__two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .cv__edu-title { font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 15px; color: var(--ink); }
+  .cv__edu-sub { font-size: 13px; color: var(--mid); margin-top: 2px; margin-bottom: 12px; }
+  .cv__lang { font-size: 14px; line-height: 1.8; color: var(--body-text); }
 
-  /* RESPONSIVE */
+  /* Download button */
+  .cv__download {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    color: #fff;
+    background-color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 13px 28px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .cv__download:hover { background-color: transparent; color: var(--accent); }
+
+  /* ════════ MOBILE ════════ */
   @media (max-width: 900px) {
-    nav { padding: 1.25rem 1.5rem; }
-    .nav-links { display: none; }
-    section { padding: 5rem 1.5rem; }
-    #hero { padding: 5rem 1.5rem 4rem; }
-    #contact { padding: 4rem 1.5rem; }
-    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
-    .services-grid { grid-template-columns: 1fr; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .project-card.wide { grid-column: span 1; }
-    .diy-grid { grid-template-columns: repeat(2, 1fr); }
-    .art-grid { grid-template-columns: 1fr; }
-    .mip-banner { flex-direction: column; gap: 2rem; padding: 2.5rem; }
-    .mip-meta { text-align: left; }
-    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    .sidebar {
+      position: static;
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+      padding: 28px 24px 20px 24px;
+    }
+    .main { margin-left: 0; padding: 28px 24px 48px 24px; }
+    .cards { grid-template-columns: 1fr; }
+    .panels { grid-template-columns: 1fr; }
+    .cv__offer { grid-template-columns: 1fr; gap: 20px; }
+    .cv__two { grid-template-columns: 1fr; gap: 24px; }
+    .side-foot { margin-top: 20px; flex-direction: row; flex-wrap: wrap; gap: 8px 22px; border-top: none; padding-top: 12px; }
   }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="#" class="nav-logo">FABIO SALVADOR</a>
-  <ul class="nav-links">
-    <li><a href="#consultancy">Made in Portugal</a></li>
-    <li><a href="#design">Industrial design</a></li>
-    <li><a href="#ideas">Ideas</a></li>
-    <li><a href="#diy">DIY</a></li>
-    <li><a href="#art">Art & media</a></li>
-    <li><a href="#contact" class="cta">Contact →</a></li>
-  </ul>
-</nav>
+  <!-- ════════════════ SIDEBAR ════════════════ -->
+  <aside class="sidebar">
 
-<!-- HERO -->
-<div id="hero">
-  <p class="hero-eyebrow fade-in">Industrial designer · Consultant · Maker</p>
-  <h1 class="hero-title fade-in">Work across <strong>design,</strong> manufacturing <strong>and ideas</strong></h1>
-  <p class="hero-sub fade-in">Based in Portugal. I design physical products, help companies build supply chains across the Iberian peninsula, and document everything I make — finished or not.</p>
-  <div class="hero-stats fade-in">
-    <div>
-      <span class="stat-num">15+</span>
-      <span class="stat-label">Years in industrial design</span>
-    </div>
-    <div>
-      <span class="stat-num">PT · ES</span>
-      <span class="stat-label">Primary consulting regions</span>
-    </div>
-    <div>
-      <span class="stat-num">40+</span>
-      <span class="stat-label">Projects documented</span>
-    </div>
-  </div>
-</div>
-
-<!-- CONSULTANCY -->
-<section id="consultancy">
-  <div class="section-label fade-in">Made in Portugal</div>
-  <div class="mip-banner fade-in">
-    <div>
-      <div class="mip-title">Made in<br><span>Portugal</span></div>
-    </div>
-    <div class="mip-meta">
-      <p><strong>Sourcing</strong> · Supply chain</p>
-      <p><strong>Quality control</strong> · Factory audits</p>
-      <p><strong>Innovation</strong> · Advisory</p>
-      <p style="margin-top:1rem; color:rgba(255,255,255,0.25);">Portugal · Spain · On-site available</p>
-    </div>
-  </div>
-  <div class="services-grid fade-in">
-    <div class="service-card">
-      <div class="service-num">01</div>
-      <div class="service-title">Sourcing & supply chain</div>
-      <div class="service-desc">Building reliable routes from Portuguese and Spanish manufacturers to European and global markets. From factory identification to logistics setup.</div>
-      <div class="service-geo">Portugal · Spain</div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">02</div>
-      <div class="service-title">Quality control</div>
-      <div class="service-desc">Factory audits, production oversight and QC frameworks for physical goods manufacturing. On-site presence when it matters most.</div>
-      <div class="service-geo">On-site available</div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">03</div>
-      <div class="service-title">Innovation advisory</div>
-      <div class="service-desc">NPD roadmapping, project management and manufacturing feasibility for product companies entering or scaling in Iberia.</div>
-      <div class="service-geo">Remote · Iberia</div>
-    </div>
-  </div>
-</section>
-
-<!-- INDUSTRIAL DESIGN -->
-<section id="design">
-  <div class="cards-header fade-in">
-    <h2>Industrial design</h2>
-    <a href="#" class="view-all">View all →</a>
-  </div>
-  <div class="projects-grid fade-in">
-    <a href="#" class="project-card wide">
-      <div class="card-thumb">
-        <span class="card-thumb-label">Makers Department</span>
-      </div>
-      <div class="card-body">
-        <div class="card-category">Makers Department</div>
-        <div class="card-title">Modular shelving system for residential market</div>
-        <div class="card-desc">Full NPD cycle from brief to production — materials specification, tooling review, and supplier coordination with Portuguese manufacturers.</div>
-        <div class="card-footer">
-          <span class="card-tag">Furniture · Portugal</span>
-          <span class="card-arrow">→</span>
-        </div>
-      </div>
+    <!-- LOGO -->
+    <a class="side-logo" href="#" aria-label="Fábio Salvador — home">
+      <img src="images/logo.svg" alt="Fábio Salvador">
+      <div class="side-logo__rule"></div>
     </a>
-    <a href="#" class="project-card">
-      <div class="card-thumb">
-        <span class="card-thumb-label">External</span>
-      </div>
-      <div class="card-body">
-        <div class="card-category">External collaboration</div>
-        <div class="card-title">Packaging system for artisan food brand</div>
-        <div class="card-desc">Structural packaging design for a Spanish artisan food producer, from concept through to production files.</div>
-        <div class="card-footer">
-          <span class="card-tag">Packaging · ES</span>
-          <span class="card-arrow">→</span>
-        </div>
-      </div>
-    </a>
-  </div>
-</section>
 
-<!-- IDEAS -->
-<section id="ideas">
-  <div class="cards-header fade-in">
-    <h2>Innovations & ideas</h2>
-    <a href="#" class="view-all">Browse catalogue →</a>
-  </div>
-  <div class="projects-grid fade-in">
-    <a href="#" class="project-card">
-      <div class="card-thumb" style="background:#EEF4FB;">
-        <span class="card-thumb-label">Sketch → Render</span>
-      </div>
-      <div class="card-body">
-        <div class="card-category">Sketch-to-render · Physical</div>
-        <div class="card-title">Compact urban composting unit</div>
-        <div class="card-desc">A kitchen-scale composter for apartment living. Original 2019 sketch, AI-rendered.</div>
-        <div class="card-footer">
-          <span class="card-tag">Physical · Unrealised</span>
-          <span class="card-arrow">→</span>
-        </div>
-      </div>
-    </a>
-    <a href="#" class="project-card">
-      <div class="card-thumb">
-        <span class="card-thumb-label">Digital concept</span>
-      </div>
-      <div class="card-body">
-        <div class="card-category">Digital idea</div>
-        <div class="card-title">Factory floor inspection app</div>
-        <div class="card-desc">Mobile-first QC checklist tool for small manufacturers. Designed, never built.</div>
-        <div class="card-footer">
-          <span class="card-tag">Software · Concept</span>
-          <span class="card-arrow">→</span>
-        </div>
-      </div>
-    </a>
-    <a href="#" class="project-card">
-      <div class="card-thumb">
-        <span class="card-thumb-label">Product concept</span>
-      </div>
-      <div class="card-body">
-        <div class="card-category">Product concept</div>
-        <div class="card-title">Modular outdoor furniture kit</div>
-        <div class="card-desc">Flat-pack seating system optimised for Portuguese cork and pine. Iberian materials, European market.</div>
-        <div class="card-footer">
-          <span class="card-tag">Furniture · Concept</span>
-          <span class="card-arrow">→</span>
-        </div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- DIY -->
-<section id="diy">
-  <div class="cards-header fade-in">
-    <h2>DIY</h2>
-    <a href="#" class="view-all">See all builds →</a>
-  </div>
-  <div class="diy-grid fade-in">
-    <div class="diy-card">
-      <div class="diy-thumb"></div>
-      <div class="diy-body">
-        <div class="diy-label">Workshop bench build</div>
-        <div class="diy-sub">Construction</div>
-      </div>
+    <!-- DATE / LOCATION -->
+    <div class="side-meta">
+      <span class="side-meta__date" id="live-date">—</span>
+      <span class="side-meta__loc">Lisbon</span>
+      <span class="side-meta__loc side-meta__loc--alt">Sometimes London</span>
     </div>
-    <div class="diy-card">
-      <div class="diy-thumb"></div>
-      <div class="diy-body">
-        <div class="diy-label">Bathroom tile repair</div>
-        <div class="diy-sub">Fix</div>
-      </div>
-    </div>
-    <div class="diy-card">
-      <div class="diy-thumb"></div>
-      <div class="diy-body">
-        <div class="diy-label">Cable management hack</div>
-        <div class="diy-sub">Hack</div>
-      </div>
-    </div>
-    <div class="diy-card">
-      <div class="diy-thumb"></div>
-      <div class="diy-body">
-        <div class="diy-label">Garden irrigation rig</div>
-        <div class="diy-sub">Build</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ART & MEDIA -->
-<section id="art">
-  <div class="cards-header fade-in">
-    <h2>Art & media</h2>
-    <a href="#" class="view-all">Explore →</a>
-  </div>
-  <div class="art-grid fade-in">
-    <a href="#" class="project-card">
-      <div class="card-thumb" style="aspect-ratio: 3/2;"></div>
-      <div class="card-body">
-        <div class="card-category">Visual craft</div>
-        <div class="card-title">Industrial landscapes — photography series</div>
-        <div class="card-desc">Documenting factory floors and production spaces across Portugal and Spain.</div>
-        <div class="card-footer">
-          <span class="card-tag">Photography</span>
-          <span class="card-arrow">→</span>
+    <!-- NAV LIST — built by JS from data below -->
+    <nav class="nav-list" id="nav-list"></nav>
+
+    <!-- FOOT — social + email -->
+    <div class="side-foot">
+      <a href="https://www.linkedin.com/in/fabio-a-salvador" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a>
+      <a href="https://www.behance.net/fabiosalvador" target="_blank" rel="noopener noreferrer">Behance &#8599;</a>
+      <a href="mailto:fsilvasalvador@gmail.com">Email &#8599;</a>
+    </div>
+
+  </aside>
+
+  <!-- ════════════════ MAIN ════════════════ -->
+  <main class="main">
+
+    <!-- HOME VIEW: project grid -->
+    <section class="view" id="view-home">
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <!-- ABOUT / CV VIEW -->
+    <section class="view" id="view-about">
+      <div class="cv">
+        <div class="cv__head">
+          <img class="cv__portrait" src="images/about/portrait.jpg" alt="Portrait of Fábio Salvador">
+          <div>
+            <p class="cv__role">Design Manager · Industrial Design</p>
+            <p class="cv__sub">Team Leadership · Client &amp; Supplier Management · Project Delivery</p>
+            <span class="cv__badge">Available for part-time &amp; interim engagements</span>
+          </div>
         </div>
-      </div>
-    </a>
-    <a href="#" class="project-card">
-      <div class="card-thumb" style="aspect-ratio: 3/2;"></div>
-      <div class="card-body">
-        <div class="card-category">Writing</div>
-        <div class="card-title">Notes on making things in Southern Europe</div>
-        <div class="card-desc">Essays on manufacturing culture, craft traditions, and what gets lost in production.</div>
-        <div class="card-footer">
-          <span class="card-tag">Essay</span>
-          <span class="card-arrow">→</span>
+        <div class="cv__contact">
+          <span>Lisbon, Portugal</span>
+          <a href="mailto:fsilvasalvador@gmail.com">fsilvasalvador@gmail.com</a>
+          <a href="https://www.linkedin.com/in/fabio-a-salvador" target="_blank" rel="noopener noreferrer">linkedin.com/in/fabio-a-salvador</a>
         </div>
+        <div class="cv__rule"></div>
+
+        <!-- PROFILE -->
+        <section class="cv__section">
+          <span class="section-label">Profile</span>
+          <p class="cv__body">
+            Industrial designer and design studio founder with 12+ years leading
+            multidisciplinary teams from concept through mass production. A decade running
+            <a href="https://makersdepartment.com" target="_blank" rel="noopener noreferrer">Makers Department</a>
+            sits alongside managing a global dealership rollout for McLaren Automotive and
+            lecturing in creative project management at Kingston University. Comfortable
+            owning both the commercial side of a project — client negotiation, budgets,
+            contracts, risk and liability — and the creative one: DFM, certifications, and
+            design rights and patents. Equally experienced building, hiring and training
+            design teams. I offer part-time and interim support to design studios that need
+            hands-on team management, design mentorship, or senior oversight of project
+            delivery, backed by a network of vetted suppliers and freelancers built over
+            12+ years.
+          </p>
+        </section>
+
+        <!-- WHAT I OFFER -->
+        <section class="cv__section">
+          <span class="section-label">What I offer</span>
+          <div class="cv__offer">
+            <div>
+              <h3>End-to-End Industrial Design</h3>
+              <p>Concept to manufacturing, end to end.</p>
+            </div>
+            <div>
+              <h3>Design &amp; Project Manager</h3>
+              <p>Coordinating designers, engineers, suppliers and clients on-brief and on schedule.</p>
+            </div>
+            <div>
+              <h3>Supply Chain Sourcing</h3>
+              <p>Supplier relationships and production oversight through an established network.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CORE SKILLS -->
+        <section class="cv__section">
+          <span class="section-label">Core skills</span>
+          <div class="cv__pills">
+            <span class="cv__pill">Team &amp; Studio Management</span>
+            <span class="cv__pill">Design Mentorship &amp; Training</span>
+            <span class="cv__pill">Client Negotiation &amp; Contracts</span>
+            <span class="cv__pill">Supply Chain Sourcing</span>
+            <span class="cv__pill">Budget &amp; Commercial Management</span>
+            <span class="cv__pill">DFM &amp; Certifications</span>
+            <span class="cv__pill">IP, Design Rights &amp; Patents</span>
+            <span class="cv__pill">CAD — SolidWorks, Fusion 360, Rhino</span>
+            <span class="cv__pill">3D Printing — FDM, SLA &amp; SLS</span>
+          </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section class="cv__section">
+          <span class="section-label">Professional experience</span>
+
+          <div class="cv__job">
+            <div class="cv__job-head">
+              <span class="cv__job-title">Founder &amp; Studio Lead</span>
+              <span class="cv__job-date">Oct 2015 – Present</span>
+            </div>
+            <p class="cv__job-org">Makers Department | London, United Kingdom &amp; Lisbon, Portugal</p>
+            <ul>
+              <li>Founded and built an industrial design consultancy, hiring, managing and mentoring an in-house team, for clients including McLaren Automotive, Joseph Joseph and Unilever, and startups including Valkyrie Industries, Sensate and Flowbio.</li>
+              <li>Set and held quality standards across every project, linking client, design team, engineers and manufacturing partners through an established Portuguese network.</li>
+              <li>Owned the commercial side of client relationships — negotiation, budgets, risk/liability — and advised on DFM, certifications and IP strategy.</li>
+            </ul>
+          </div>
+
+          <div class="cv__job">
+            <div class="cv__job-head">
+              <span class="cv__job-title">Operations Manager <span>(progressed from Junior Industrial Designer)</span></span>
+              <span class="cv__job-date">Feb 2013 – Dec 2023</span>
+            </div>
+            <p class="cv__job-org">Hyphen Design Ltd | Client: McLaren Automotive | Concurrent engagement</p>
+            <ul>
+              <li>Joined as Junior Industrial Designer, working on high-end client work including Bosch Appliances, McLaren and TangleTeezer; progressed to Operations Manager on McLaren's dealership configuration tools programme.</li>
+              <li>Ran supplier coordination, budgets and production oversight, delivering tools to 100+ dealerships worldwide, then continued as a retained consultant.</li>
+            </ul>
+          </div>
+
+          <div class="cv__job">
+            <div class="cv__job-head">
+              <span class="cv__job-title">University Lecturer, Creative Project Management</span>
+              <span class="cv__job-date">Jan 2023 – Dec 2023</span>
+            </div>
+            <p class="cv__job-org">Kingston University | Part-time</p>
+            <ul>
+              <li>Trained design, art direction and marketing students in project management and design thinking, guiding teams through live briefs with clients including Gov.uk and the BBC.</li>
+            </ul>
+          </div>
+
+          <div class="cv__job">
+            <div class="cv__job-head">
+              <span class="cv__job-title">Designer and Shareholder</span>
+              <span class="cv__job-date">Jul 2020 – Dec 2025</span>
+            </div>
+            <p class="cv__job-org">Innotrend Ltd, trading as PurePods | Self-employed | Greater London, United Kingdom</p>
+            <ul>
+              <li>Designed and engineered water-filtering products, managing overseas manufacturing partners through prototyping and scale-up.</li>
+              <li>Ran day-to-day operations: sales channels, inventory, customer service and marketing.</li>
+            </ul>
+          </div>
+
+          <div class="cv__job">
+            <div class="cv__job-head">
+              <span class="cv__job-title">Industrial Design Freelancer</span>
+              <span class="cv__job-date">Oct 2013 – Oct 2015</span>
+            </div>
+            <p class="cv__job-org">Freelance | London, United Kingdom</p>
+            <ul>
+              <li>Delivered independent design work for international clients, including multi-year support to Magnitone and packaging development for Re-Cleanse.</li>
+              <li>Worked within a small engineering team on the UK's first self-balancing personal transport product.</li>
+            </ul>
+          </div>
+
+          <p class="cv__earlier"><strong>Earlier:</strong> Product Design Intern, Paul Cocksedge Studio (2012–2013); Exhibition Assistant, MUDE Lisboa (2010–2011).</p>
+        </section>
+
+        <!-- EDUCATION + LANGUAGES -->
+        <section class="cv__section">
+          <div class="cv__two">
+            <div>
+              <span class="section-label">Education</span>
+              <p class="cv__edu-title">Design Degree (Licenciatura), Industrial and Product Design</p>
+              <p class="cv__edu-sub">Universidade Técnica de Lisboa, 2008–2011</p>
+              <p class="cv__edu-title">SolidWorks 3D CAD — Level B (Advanced)</p>
+              <p class="cv__edu-sub">2010</p>
+            </div>
+            <div>
+              <span class="section-label">Languages</span>
+              <p class="cv__lang">
+                Portuguese (Native)<br>
+                English (Full Professional Proficiency)<br>
+                Spanish (Proficient)<br>
+                French (Elementary)
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CLIENTS -->
+        <section class="cv__section">
+          <span class="section-label">Selected clients &amp; collaborations</span>
+          <div class="cv__pills">
+            <span class="cv__pill cv__pill--accent">McLaren Automotive</span>
+            <span class="cv__pill cv__pill--accent">Joseph Joseph</span>
+            <span class="cv__pill cv__pill--accent">Unilever</span>
+            <span class="cv__pill cv__pill--accent">Bosch Appliances</span>
+            <span class="cv__pill cv__pill--accent">Victoria and Albert Museum</span>
+            <span class="cv__pill cv__pill--accent">Royal Air Force</span>
+            <span class="cv__pill cv__pill--accent">Wavetec</span>
+            <span class="cv__pill cv__pill--accent">Valkyrie Industries</span>
+            <span class="cv__pill cv__pill--accent">Sensate</span>
+            <span class="cv__pill cv__pill--accent">Flowbio</span>
+            <span class="cv__pill cv__pill--accent">Gov.uk</span>
+            <span class="cv__pill cv__pill--accent">BBC</span>
+          </div>
+        </section>
+
+        <!-- DOWNLOAD CV -->
+        <a class="cv__download" href="https://drive.google.com/uc?export=download&id=1Xxz7ggmuYR0mZjxwkaXX6XLC6cXVgMj-" target="_blank" rel="noopener noreferrer">Download CV (PDF) &darr;</a>
       </div>
-    </a>
-  </div>
-</section>
+    </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-label">Get in touch</div>
-  <h2>Working on something<br>that needs making?</h2>
-  <p>Industrial design, Iberian manufacturing, or just an idea worth talking through.</p>
-  <a href="mailto:hello@fabiosalvador.com" class="cta-btn">hello@fabiosalvador.com</a>
-</section>
+    <!-- PROJECT VIEWS — built by JS from PROJECTS data below -->
+    <div id="project-views"></div>
 
-<footer>
-  <p>© 2025 Fabio Salvador</p>
-  <a href="https://makersdepartment.com" target="_blank">makersdepartment.com →</a>
-</footer>
+  </main>
 
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
+  <script>
+    /* ══════════════════════════════════════════════════════════════
+       PROJECT DATA — edit everything in this one block.
+       Image files live in images/projects/<slug>/ :
+         thumb.jpg  300 x 200   (navigator thumbnail)
+         card.jpg   1200 x 800  (home card)
+         hero.jpg   1800 x 1200 (project page image)
+       Optional fields:
+         video: 'YOUTUBE_ID'  -> replaces the hero image with an embedded player
+         links: [{ label, url }]  -> pill links under More information
+       TEXT LIMITS (characters incl. spaces):
+         navDesc: 45 | cardText: 100 | aboutProject: 550 | moreInfo: 350
+       ══════════════════════════════════════════════════════════════ */
+    const PROJECTS = [
+      {
+        slug: 'skoda-duo-bell',
+        title: 'Skoda Duo Bell',
+        navDesc: 'Acoustic Safety Design',
+        cardText: 'A chip-free bicycle bell acoustically engineered to cut through noise-cancelling headphones.',
+        aboutProject: `The DuoBell is an analogue answer to a digital problem. Research with the University of Salford identified a blind spot in active noise-cancelling algorithms between 750–780 Hz — and the bell is engineered to strike exactly there. A secondary resonator and a specialised hammer mechanism produce rapid, irregular strikes that ANC software cannot predict or suppress. No batteries, no Bluetooth, no chips: pure mechanical and acoustic engineering in a minimal, handlebar-ready form.`,
+        moreInfo: `Designed while freelancing as part of the UNIT9 agency team for Škoda. Developed with the University of Salford, launched April 2026 and released patent-free. Covered by Cyclingnews, BikeRadar, T3 and urdesignmag; full story on Škoda Storyboard and We Love Cycling. A modern safety problem solved with zero electronics.`,
+        links: []
+      },
+      {
+        slug: 'wavetec-du',
+        title: 'Wavetec Du',
+        navDesc: 'Self-Service Kiosks',
+        cardText: 'Premium modular self-service kiosks bringing biometric SIM dispensing to telecom operator du.',
+        aboutProject: `Public-facing hardware must survive thousands of daily interactions while looking effortless. For Wavetec's kiosks deployed with UAE operator du, we designed a premium, approachable architecture around demanding internals: SIM dispensing, cash handling, card printing and fingerprint, iris and facial biometrics. The modular sheet-metal construction lets one design language flex across configurations, while screen angles, reach zones and accessibility shaped every surface. Robust CMF choices balance durability, cleanability and retail presence.`,
+        moreInfo: `Wavetec kiosks serve banking and telecom clients worldwide, with du among its flagship operators. The next-generation range launched across the GCC, covered by Zawya and Kiosk Marketplace, delivering 24/7 SIM issuance with real-time KYC.`,
+        links: [
+          { label: 'Wavetec', url: 'https://www.wavetec.com/' }
+        ]
+      },
+      {
+        slug: 'mclaren-configurator',
+        title: 'McLaren Configurator',
+        navDesc: 'Ten Years of Dealership Tools',
+        cardText: 'Tactile sample tools for McLaren dealerships — ten years across design, production and delivery.',
+        aboutProject: `I worked on McLaren's dealership configuration tools for about ten years, through Hyphen Design. I started as a junior designer, doing sketches, CAD and prototypes for the tactile sample tools dealers use to show customers paint, leather and trim options. Over time I took over the project management side — coordinating suppliers, keeping track of stock, and making sure production and deliveries reached over 100 dealerships around the world. The tools had to feel right next to the cars, so materials and finishes were always held to a high standard. After I left, McLaren kept me on as a consultant for new versions and further rollout.`,
+        moreInfo: `The collaboration ran from 2013 to 2023, covering design, manufacturing, distribution and ongoing updates. The tools are used in dealerships during bespoke builds and high-value sales, and the formats we developed are still in use today. Most of the work was done in SolidWorks and KeyShot.`,
+        links: [
+          { label: 'Behance', url: 'https://www.behance.net/gallery/226644077/McLaren-Automotive-Dealership-Configuration-Tools' },
+          { label: 'McLaren', url: 'https://cars.mclaren.com/' }
+        ]
+      },
+      {
+        slug: 'valkyrie-industries',
+        title: 'Valkyrie Industries',
+        navDesc: 'Haptic Suit for Virtual Reality',
+        cardText: 'A VR suit that gives physical feedback through electro-stimulation, built with a London startup.',
+        aboutProject: `At Valkyrie Industries I joined a small team of software, electronics and garment specialists to help develop BiFrost, a VR suit that gives physical feedback through electro-stimulation in the sleeves and gloves. Alongside Piers Thomas, a former Patagonia designer, we worked on a layered fabric with electrodes placed along the wearer's muscles. I also designed the fingertip mechanism, which gives touch sensations while still letting you hold real objects, and the housings for the electronics — made to come apart easily for cleaning and repair.`,
+        moreInfo: `We got there through many rounds of rapid prototyping and hand-made models. The working suit helped the startup raise its next rounds of investment. The technology was patented, and Valkyrie has since developed it into their eir bands, EMS wearables now used in rehab clinics and universities in the UK and EU.`,
+        links: [
+          { label: 'Valkyrie Industries', url: 'https://www.valkyrie-vr.com/' },
+          { label: 'Behance', url: 'https://www.behance.net/gallery/159130767/BiFrost-Haptics-Suit' }
+        ]
+      },
+      {
+        slug: 'purepods',
+        title: 'PurePods',
+        navDesc: 'Refillable Water Filters',
+        cardText: 'A refillable water filter I designed and helped sell as a shareholder in a small London startup.',
+        aboutProject: `PurePods started as a design job and became a business I part-owned through Innotrend Ltd. The product is a patented refillable cartridge that fits Brita Maxtra jugs — you replace only the filtering medium and keep the plastic parts, which cuts waste and cost. I did the product design and mechanical development with our overseas manufacturers, and along the way ended up involved in most of the rest too: pricing, sales, running the Amazon and Shopify stores, marketing, and logistics across the UK and EU.`,
+        moreInfo: `We launched in 2021 and sold through Amazon UK and purepods.net. Over five years it taught me, in a very practical way, what it takes to get a consumer product made, shipped and sold — and to keep it going with a small team and a small budget.`,
+        links: [
+          { label: 'PurePods', url: 'https://purepods.net/' },
+          { label: 'Amazon UK', url: 'https://www.amazon.co.uk/dp/B097RD9KHY' },
+          { label: 'Behance', url: 'https://www.behance.net/gallery/226882395/Refillable-Water-Filter' }
+        ]
+      },
+      {
+        slug: 'infraway-l1',
+        title: 'Infraway L1',
+        navDesc: 'Wearable Infrared Therapy',
+        cardText: 'IoT heat-therapy wearable fusing FIR bioceramic textiles with app-controlled dual-heat electronics.',
+        aboutProject: `The L1 sits where soft goods meet electronics — one of the hardest categories in industrial design. The brief: professional-grade recovery in a form you forget you're wearing. At under an inch thick and 1.5 lbs, the L1 combines a 4-way stretch antimicrobial fabric embedded with far-infrared bioceramics and a patented dual-heat system that penetrates 75 mm below the skin. Flexible heating zones, battery placement and strap architecture were resolved around the body's movement, while Bluetooth app control keeps the hardware interface minimal.`,
+        moreInfo: `Developed under Thunderbolt Wearables with the guidance of Jacob Skinner. Patented Dual-Heat Technology; launch covered by PRWeb.`,
+        links: [
+          { label: 'The Infraway', url: 'https://theinfraway.com/' }
+        ]
+      },
+      {
+        slug: 'magnitone-barefaced',
+        title: 'Magnitone BareFaced',
+        navDesc: 'Ergonomic Beauty Tech',
+        cardText: 'Award-winning Vibra-Sonic cleansing brush — soft-touch CMF in a fully sealed waterproof enclosure.',
+        aboutProject: `How do you redesign a category that stopped evolving? Skin cleansing tools had settled into the same pistol-grip formula — awkward and clinical for such a delicate ritual. Asked to change the face of Magnitone's new generation, we rethought how the device is held: smooth, organic forms that nestle in the palm, bringing the hand closer to the skin and the gesture closer to the ritual. Building around the existing internals, we iterated through foam models, rapid prototypes and user validation until comfort and style met in one iconic silhouette.`,
+        moreInfo: `5-star rated at Boots and Lookfantastic; featured in Vogue and Cosmopolitan. Winner of the Beauty Shortlist Awards 2019, Gold Beauty Awards 2015 and Bronze Beauty Awards 2016; Good Housekeeping Institute Approved. Magnitone is now an award-winning brand and a top-three leader of the UK beauty market.`,
+        links: [
+          { label: 'Magnitone', url: 'https://www.magnitone.co.uk/' },
+          { label: 'Boots', url: 'https://www.boots.com/magnitone-barefaced3-vibra-sonic%C2%AE-facial-cleanse-massage-brush-10327412' },
+          { label: 'Pure Beauty Awards', url: 'https://www.cosmeticsbusiness.com/news/article_page/pure_beauty_awards_2015_winners_revealed/112992' }
+        ]
+      },
+      {
+        slug: 'seergrills-perfecta',
+        title: 'SeerGrills Perfecta',
+        navDesc: 'The First AI-Powered Grill',
+        cardText: 'CES Innovation Award-winning AI grill in glass and stainless steel. A perfect ribeye in 90 seconds.',
+        aboutProject: `The Perfecta proves technical complexity and aesthetic restraint can coexist. Tasked with the interface and exterior design of the world's first AI-powered grill, we wrapped its novel vertical dual-burner configuration in pure geometric forms of glass and stainless steel, elevated by powder coating, brushed and spark-textured finishes. Minimal branding preserves an enigmatic, monolithic presence. Close dialogue between design, engineering and manufacturing took the first working models from concept to reality in a remarkably short timeframe.`,
+        moreInfo: `Winner, CES Innovation Award 2024. Over $1M in orders during the first pre-launch campaign. Featured on Fox News, Engadget and TechHive; now shipping. NeuralFire AI cooks a 1-inch ribeye in 90 seconds.`,
+        links: [
+          { label: 'SeerGrills', url: 'https://seergrills.com/' },
+          { label: 'CES Innovation Award', url: 'https://www.ces.tech/ces-innovation-awards/2024/perfecta/' },
+          { label: 'Engadget', url: 'https://www.engadget.com/home/kitchen-tech/the-ai-powered-perfecta-from-seergrills-is-now-shipping-after-its-ces-2024-debut-163000474.html' },
+          { label: 'TechHive', url: 'https://www.techhive.com/article/2195266/seergrills-peffecta-grill-ces-2024.html' },
+          { label: 'YouTube', url: 'https://www.youtube.com/channel/UC3AuQgsmfyvh6pjSXNmJWlQ' },
+          { label: 'A Robot Cooked My Steak', url: 'https://www.youtube.com/watch?v=-oLvxWQyALw' }
+        ]
+      },
+      {
+        slug: 'dishmatic-mk5',
+        title: 'Dishmatic Mk5',
+        navDesc: 'A Kitchen Icon, Evolved',
+        cardText: "UK's favourite dish brush — found in 6 of 10 British homes.",
+        aboutProject: `Redesigning an icon is harder than starting fresh. The Dishmatic handle lives in 6 out of 10 UK households, so the MK5 had to improve ergonomics, fluid dispensing and assembly without alienating millions of loyal users. We refined the grip geometry and click-together refill interface, pushing tool-making and moldflow constraints to keep the part count low and the assembly intuitive. Material selection continued the brand's sustainability trajectory — the Dishmatic family already exceeds 60% recycled raw material content.`,
+        moreInfo: `The original Dishmatic sits in the Design Museum's permanent collection in the British Favourites display. Over four million handles produced yearly by EasyDo (now Libman Brands), stocked across the world including the United States and Australia.`,
+        links: [
+          { label: 'Dishmatic', url: 'https://www.dishmatic.com/' },
+          { label: 'Libman', url: 'https://www.libman.com/products/dishmatic-dish-wand' },
+          { label: 'Shop', url: 'https://shop.dishmatic.com/collections/all-products' }
+        ]
+      },
+      {
+        slug: 'taur-scooter',
+        title: 'Taur Scooter',
+        navDesc: 'The Scooter Built for the City',
+        cardText: 'Forward-facing e-scooter that made stability an industry standard. Red Dot and Good Design 2021.',
+        aboutProject: `Taur arrived as a functional prototype — two wheels, welded pipes, a motor and battery cells. Our role was to turn it into a confident, road-ready product. The defining move: a forward-facing foot platform giving riders a stable, natural stance, since adopted across the industry. Lean, intense design sprints — sketching, CAD, CMF detailing and visualisation — considered manufacturing constraints from day one, handing engineering a smooth path to production. The result is robust, characteristic, and recognisable from a distance.`,
+        moreInfo: `Good Design Award 2021 and Green Good Design Award 2021 winner. Fully funded on Kickstarter in 3 days (£253k from 318 backers); over £1M raised in seed funding. First full review by Rider Guide; Taur II campaign raised a further $280k.`,
+        links: [
+          { label: 'Taur', url: 'https://taur.com/' },
+          { label: 'Red Dot', url: 'https://www.red-dot.org/de/project/taur-the-electric-road-scooter-60099' },
+          { label: 'Good Design Award', url: 'https://www.chi-athenaeum.org/good-design-awards-transportation-2022/2022/12/13/taur-the-electric-road-scooter-2022/' },
+          { label: 'Global Design News', url: 'https://globaldesignnews.com/carson-brown-designs-the-first-high-performance-electric-scooter-designed-for-life-on-the-road/' },
+          { label: 'Kickstarter', url: 'https://www.kickstarter.com/projects/taur/taur-the-electric-road-scooter' },
+          { label: 'Rider Guide', url: 'https://riderguide.com/reviews/taur-electric-scooter-review/' },
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=D4zqvhKPekM' }
+        ]
+      },
+      {
+        slug: 'sensate-1',
+        title: 'Sensate 1',
+        navDesc: 'Infrasonic Calm, By Design',
+        cardText: 'A pebble-inspired infrasonic device that tones the vagus nerve through bone conduction.',
+        aboutProject: `How should technology that calms you look and feel? Sensate transduces low-frequency sound through the sternum to stimulate the vagus nerve, easing the nervous system from high alert into rest. Through iterative design sprints with Thrive Wearables we explored dozens of form factors, landing on a shape inspired by the pebbles of Brighton's beaches — nature's own lesson in calm through simplicity. The soft, weighted form invites placement on the chest, while discreet proportions keep this piece of medical-grade tech quietly personal.`,
+        moreInfo: `Funded 300%+ on Indiegogo; featured in Vogue and The Times, and named The Times Health Tech Invention of the Year. Studies show a 48% stress reduction within 28 days and up to an hour of extra sleep per night. Now in its second generation.`,
+        links: [
+          { label: 'Sensate', url: 'https://www.getsensate.com/' },
+          { label: 'Indiegogo', url: 'https://www.indiegogo.com/projects/sensate-the-shortcut-to-reduce-stress-and-anxiety' },
+          { label: 'How Does It Work?', url: 'https://www.youtube.com/watch?v=dgiREGtnv2c' },
+          { label: 'Ben Greenfield', url: 'https://bengreenfieldlife.com/ben-recommends/sensate/' },
+          { label: 'Dave Asprey', url: 'https://daveaspreybox.com/your-vagus-nerve/' }
+        ]
       }
-    });
-  }, { threshold: 0.1 });
+    ];
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
+    /* ── BUILD NAVIGATOR ── */
+    const navList = document.getElementById('nav-list');
+
+    navList.insertAdjacentHTML('beforeend', `
+      <a class="nav-item" href="#about" data-route="about">
+        <img class="nav-item__thumb" src="images/about/thumb.jpg" alt="">
+        <span class="nav-item__text">
+          <span class="nav-item__title">About Me</span>
+          <span class="nav-item__desc">Industrial Designer &amp; Maker</span>
+        </span>
+      </a>`);
+
+    PROJECTS.forEach(p => {
+      navList.insertAdjacentHTML('beforeend', `
+        <a class="nav-item" href="#${p.slug}" data-route="${p.slug}">
+          <img class="nav-item__thumb" src="images/projects/${p.slug}/thumb.jpg" alt="">
+          <span class="nav-item__text">
+            <span class="nav-item__title">${p.title}</span>
+            <span class="nav-item__desc">${p.navDesc}</span>
+          </span>
+        </a>`);
+    });
+
+    /* ── BUILD HOME CARDS ── */
+    const cards = document.getElementById('cards');
+    PROJECTS.forEach(p => {
+      cards.insertAdjacentHTML('beforeend', `
+        <a class="card" href="#${p.slug}">
+          <img class="card__img" src="images/projects/${p.slug}/card.jpg" alt="${p.title}">
+          <span class="card__title">${p.title}</span>
+          <span class="card__text">${p.cardText}</span>
+        </a>`);
+    });
+
+    /* ── BUILD PROJECT VIEWS ── */
+    const projectViews = document.getElementById('project-views');
+    PROJECTS.forEach(p => {
+      const media = p.video
+        ? `<div class="project__video">
+             <iframe src="https://www.youtube.com/embed/${p.video}?rel=0"
+                     title="${p.title}" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                     allowfullscreen></iframe>
+           </div>`
+        : `<img class="project__hero" src="images/projects/${p.slug}/hero.jpg" alt="${p.title}">`;
+
+      const links = (p.links && p.links.length)
+        ? `<div class="panel__links">${p.links.map(l =>
+            `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label} &#8599;</a>`).join('')}</div>`
+        : '';
+
+      projectViews.insertAdjacentHTML('beforeend', `
+        <section class="view" id="view-${p.slug}">
+          ${media}
+          <h1 class="project__title">${p.title}</h1>
+          <div class="panels">
+            <div class="panel">
+              <span class="panel__label">About the project</span>
+              <p class="panel__body">${p.aboutProject}</p>
+            </div>
+            <div class="panel">
+              <span class="panel__label">More information</span>
+              <p class="panel__body">${p.moreInfo}</p>
+              ${links}
+            </div>
+          </div>
+        </section>`);
+    });
+
+    /* ── HASH ROUTING ── */
+    const validRoutes = new Set(['about', ...PROJECTS.map(p => p.slug)]);
+
+    function route() {
+      const hash = location.hash.replace('#', '');
+      const target = validRoutes.has(hash) ? hash : 'home';
+
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('is-visible'));
+      const view = document.getElementById(`view-${target}`);
+      (view || document.getElementById('view-home')).classList.add('is-visible');
+
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.toggle('is-active', item.dataset.route === target);
+      });
+
+      window.scrollTo(0, 0);
+    }
+
+    window.addEventListener('hashchange', route);
+    route();
+
+    /* ── LIVE DATE (Lisbon time) ── */
+    function updateDate() {
+      const now = new Date();
+      const opts = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Europe/Lisbon' };
+      const time = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Lisbon' });
+      document.getElementById('live-date').textContent = `${now.toLocaleDateString('en-GB', opts)} · ${time}`;
+    }
+    updateDate();
+    setInterval(updateDate, 30000);
+  </script>
+
 </body>
 </html>
