@@ -1,0 +1,15 @@
+fabiosalvador.com update, November 2026
+
+Upload everything in this folder to the root of your GitHub repo (fabio674.github.io):
+GitHub > Add file > Upload files > drag the contents in > Commit changes.
+Upload the folders as they are; GitHub keeps the folder structure and replaces files with the same name.
+
+What's included:
+- index.html (the whole site)
+- fonts/ (one typeface, Bricolage Grotesque; you can delete fonts/doto-latin.woff2 from the repo if it's there)
+- downloads/ (CV and Design to production PDFs)
+- images/about/portrait.jpg (new headshot, used on the home page and CV)
+- images/projects/ new photos for McLaren, DuoBell, Playforever, Dishmatic and StretchSense
+- images/og.png (LinkedIn link preview) and images/downloads/ (PDF thumbnails)
+
+Before uploading: set up contact@fabiosalvador.com forwarding first (see chat), because the site and CV now use that address.

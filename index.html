@@ -3,695 +3,860 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fábio Salvador | Industrial Designer</title>
-<meta name="description" content="Selected industrial design work by Fábio Salvador — automotive, IoT, medtech, robotics and consumer electronics products taken from prototype to market.">
+<title>Fábio Salvador | Industrial Design Manager</title>
+<meta name="description" content="Industrial design manager available for ongoing projects, project management, team building and training.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fabiosalvador.com/">
+<meta property="og:title" content="Fábio Salvador | Industrial Design Manager">
+<meta property="og:description" content="Available for ongoing projects, project management, team building and training.">
+<meta property="og:image" content="https://fabiosalvador.com/images/og.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  @font-face { font-family: 'Bricolage'; src: url('fonts/bricolage-latin.woff2') format('woff2'); font-weight: 200 800; font-display: swap;
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family: 'Bricolage'; src: url('fonts/bricolage-latin-ext.woff2') format('woff2'); font-weight: 200 800; font-display: swap;
+    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+20A0-20AB,U+20AD-20C0,U+2113; }
 
-  /* ════════ LIGHT PALETTE — tones of white & light grey, thin orange accents ════════ */
+  /* ════════ TOKENS — white and grey, with a punch of colour here and there ════════ */
   :root {
-    --bg: #F5F5F3;          /* page background — warm light grey  */
-    --paper: #FFFFFF;       /* panels & cards                     */
-    --ink: #1D1D1B;         /* near-black — used sparingly        */
-    --title: #7C7B74;       /* medium grey — display titles       */
-    --body-text: #5C5C57;   /* body copy grey                     */
-    --mid: #8F8F8A;         /* secondary grey                     */
-    --faint: #B9B9B4;       /* faintest text                      */
-    --line: #E5E5E1;        /* hairline borders                   */
-    --accent: #E8641B;      /* orange — used thin & sparingly     */
+    --white: #FFFFFF;
+    --fog: #F2F2F0;        /* light grey panels            */
+    --line: #DEDEDA;       /* hairlines                    */
+    --stone: #8B8B86;      /* secondary text               */
+    --graphite: #454542;   /* body text                    */
+    --ink: #000000;        /* headings                     */
+    --punch: #E8641B;      /* orange — from the logo       */
+    --zest: #FFD60A;       /* yellow — used very rarely    */
+    --sans: 'Bricolage', 'Helvetica Neue', Arial, sans-serif;
+    --wrap: 1240px;
+    --pad: clamp(20px, 4vw, 48px);
   }
 
-  html, body { width: 100%; min-height: 100vh; }
-
-  body {
-    background-color: var(--bg);
-    color: var(--ink);
-    font-family: 'Barlow', sans-serif;
-  }
-
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { background: var(--white); color: var(--graphite); font-family: var(--sans); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--punch); outline-offset: 3px; border-radius: 4px; }
+  h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
 
-  /* ════════ LAYOUT ════════ */
-  .sidebar {
-    position: fixed;
-    top: 0; left: 0; bottom: 0;
-    width: 320px;
-    padding: 36px 28px 28px 32px;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    background-color: var(--paper);
-    border-right: 1px solid var(--line);
-    scrollbar-width: thin;
-    scrollbar-color: var(--line) transparent;
-  }
+  /* ════════ TOP BAR ════════ */
+  .bar { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .bar__in { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 68px; }
+  .bar__logo img { height: 19px; width: auto; }
+  .bar__nav { display: flex; align-items: center; gap: 6px; }
+  .bar__nav a { font-size: 15px; font-weight: 500; color: var(--ink); padding: 8px 14px; border-radius: 999px; transition: background-color .15s; }
+  .bar__nav a:hover { background: var(--fog); }
+  .bar__nav a.is-active { background: var(--ink); color: var(--white); }
+  .bar__nav a.bar__cta { background: var(--punch); color: var(--white); margin-left: 6px; }
+  .bar__nav a.bar__cta:hover { background: var(--ink); }
 
-  .main {
-    margin-left: 320px;
-    padding: 40px 40px 60px 40px;
-    min-height: 100vh;
-  }
+  /* ════════ BUTTONS ════════ */
+  .btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--sans); font-size: 16px; font-weight: 500; padding: 14px 24px; border-radius: 999px; border: 1.5px solid var(--ink); color: var(--ink); background: var(--white); cursor: pointer; transition: background-color .15s, color .15s, border-color .15s; }
+  .btn:hover { background: var(--zest); }
+  .btn--solid { background: var(--ink); color: var(--white); }
+  .btn--solid:hover { background: var(--punch); border-color: var(--punch); color: var(--white); }
+  .btn__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--punch); flex-shrink: 0; }
+  .btn--solid:hover .btn__dot { background: var(--white); }
 
-  /* ════════ SIDEBAR — LOGO ════════ */
-  .side-logo { display: block; margin-bottom: 10px; }
-  .side-logo img { width: 100%; max-width: 240px; display: block; }
-  .side-logo__rule { height: 1px; background-color: var(--accent); margin-top: 12px; }
-
-  /* ════════ SIDEBAR — DATE / LOCATION ════════ */
-  .side-meta {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    line-height: 2.1;
-    margin-top: 16px;
-    margin-bottom: 26px;
-  }
-  .side-meta__date { color: var(--mid); display: block; }
-  .side-meta__loc { color: var(--mid); display: block; }
-  .side-meta__loc--alt { color: var(--faint); }
-
-  /* ════════ SIDEBAR — NAV LIST ════════ */
-  .nav-list { display: flex; flex-direction: column; gap: 2px; margin-bottom: 32px; }
-
-  .nav-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 10px 8px 8px;
-    margin-left: -8px;
-    border-radius: 3px;
-    transition: background-color 0.15s;
-  }
-  .nav-item:hover { background-color: var(--bg); }
-  .nav-item.is-active { background-color: var(--bg); box-shadow: inset 2px 0 0 var(--accent); }
-
-  .nav-item__thumb {
-    width: 52px;
-    height: 36px;
-    object-fit: cover;
-    flex-shrink: 0;
-    border-radius: 2px;
-    border: 1px solid var(--line);
-    filter: grayscale(1) contrast(0.9);
-    transition: filter 0.2s;
-  }
-  .nav-item:hover .nav-item__thumb,
-  .nav-item.is-active .nav-item__thumb { filter: grayscale(0.3); }
-
-  .nav-item__text { min-width: 0; }
-
-  .nav-item__title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    color: var(--title);
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .nav-item:hover .nav-item__title,
-  .nav-item.is-active .nav-item__title { color: var(--ink); }
-
-  .nav-item__desc {
-    font-size: 11px;
-    color: var(--mid);
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  /* ════════ SIDEBAR — FOOT (social links only) ════════ */
-  .side-foot { margin-top: auto; display: flex; flex-direction: column; gap: 8px; padding-top: 24px; border-top: 1px solid var(--line); }
-
-  .side-foot a {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    color: var(--mid);
-    transition: color 0.2s;
-  }
-  .side-foot a:hover { color: var(--accent); }
-
-  /* ════════ MAIN — VIEWS ════════ */
+  /* ════════ VIEWS ════════ */
+  section[id] { scroll-margin-top: 76px; }
   .view { display: none; }
   .view.is-visible { display: block; }
 
-  /* ── HOME: cards grid (2 per row on desktop) ── */
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px 32px;
-  }
+  /* ════════ HERO ════════ */
+  .hero { padding: clamp(40px, 7vw, 96px) 0 clamp(40px, 6vw, 80px); }
+  .hero__grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(280px, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+  .hero h1 { font-size: clamp(40px, 6.4vw, 88px); font-weight: 600; letter-spacing: -0.035em; line-height: 0.98; text-wrap: balance; }
+  .hero__lede { font-size: clamp(18px, 1.6vw, 21px); line-height: 1.5; max-width: 34em; margin-top: 28px; }
+  .hero__lede strong { color: var(--ink); font-weight: 600; }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 
-  .card { display: block; }
-  .card__img {
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    object-fit: cover;
-    background-color: var(--paper);
-    border: 1px solid var(--line);
-    filter: grayscale(0.5);
-    transition: filter 0.25s, border-color 0.25s;
-    display: block;
-  }
-  .card:hover .card__img { filter: grayscale(0); border-color: var(--accent); }
+  .hero__img { border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 5; background: var(--fog); }
+  .hero__img img { width: 100%; height: 100%; object-fit: cover; }
 
-  .card__title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 16px;
-    letter-spacing: 0.12em;
-    color: var(--title);
-    margin-top: 14px;
-    display: block;
-  }
-  .card__text {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--body-text);
-    margin-top: 4px;
-    display: block;
-    max-width: 46ch;
-  }
+  /* ════════ SECTIONS ════════ */
+  .sec { padding: clamp(48px, 7vw, 96px) 0; }
+  .sec--fog { background: var(--fog); }
+  .sec__head { display: flex; align-items: end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(28px, 4vw, 48px); }
+  .sec__head h2 { font-size: clamp(30px, 4vw, 52px); letter-spacing: -0.03em; }
+  .sec__head p { max-width: 30em; font-size: 16px; }
 
-  /* ── PROJECT VIEW ── */
-  .project__hero {
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    object-fit: cover;
-    background-color: var(--paper);
-    border: 1px solid var(--line);
-    display: block;
-    margin-bottom: 32px;
-  }
+  /* scrolling services band */
+  .band { overflow: hidden; }
+  .marquee { overflow: hidden; padding: clamp(14px, 2vw, 24px) 0; }
+  .marquee--punch { background: var(--punch); color: var(--ink); }
+  .marquee--ink { background: var(--ink); color: var(--white); }
+  .marquee__track { display: flex; width: max-content; animation: marquee 48s linear infinite; }
+  .marquee--reverse .marquee__track { animation-direction: reverse; animation-duration: 40s; }
+  .band:hover .marquee__track { animation-play-state: paused; }
+  .marquee__set { display: flex; align-items: center; flex-shrink: 0; }
+  .marquee__set span { font-size: clamp(34px, 6vw, 88px); font-weight: 600; letter-spacing: -0.035em; line-height: 1; white-space: nowrap; }
+  .marquee--ink .marquee__set span { font-size: clamp(22px, 3vw, 40px); font-weight: 600; letter-spacing: -0.01em; }
+  .marquee__set i { flex-shrink: 0; width: clamp(14px, 1.6vw, 22px); height: clamp(14px, 1.6vw, 22px); border-radius: 50%; background: currentColor; margin: 0 clamp(20px, 3vw, 44px); }
+  .marquee--ink .marquee__set i { width: 10px; height: 10px; background: var(--punch); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  .project__title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 34px;
-    letter-spacing: 0.02em;
-    color: var(--title);
-    margin-bottom: 24px;
-  }
+  .offer { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
+  .offer__item { border-top: 1.5px solid var(--ink); padding-top: 18px; }
+  .offer__item h3 { font-size: 22px; margin-bottom: 8px; }
+  .offer__item p { font-size: 16px; max-width: 26em; }
+  .offer__note { margin-top: 28px; font-size: 17px; max-width: 46em; }
+  .offer__note strong { color: var(--ink); font-weight: 600; }
 
-  .panels {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    gap: 24px;
-  }
+  /* lead work */
+  .lead { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center; padding: clamp(24px, 3.5vw, 44px) 0; border-top: 1px solid var(--line); }
+  .lead:last-child { border-bottom: 1px solid var(--line); }
+  .lead:nth-child(even) .lead__media { order: 2; }
+  .lead__media { border-radius: 24px; overflow: hidden; aspect-ratio: 3 / 2; background: var(--fog); display: block; }
+  .lead__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .lead:hover .lead__media img { transform: scale(1.025); }
+  .lead__via { display: inline-block; font-size: 14px; font-weight: 500; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 999px; padding: 4px 12px; margin-bottom: 16px; }
+  .lead__body h3 { font-size: clamp(28px, 3.2vw, 44px); letter-spacing: -0.03em; }
+  .lead__role { color: var(--stone); margin-top: 6px; }
+  .lead__text { margin-top: 14px; max-width: 30em; }
+  .lead__stat { margin-top: 22px; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .lead__stat b { font-weight: 600; font-size: 28px; letter-spacing: -0.02em; color: var(--ink); line-height: 1; }
+  .lead__stat span { font-size: 15px; color: var(--stone); }
+  .lead__more { display: inline-block; margin-top: 22px; font-weight: 500; color: var(--ink); border-bottom: 2px solid var(--punch); padding-bottom: 2px; }
+  .lead__more:hover { background: var(--zest); }
 
-  .panel {
-    background-color: var(--paper);
-    border: 1px solid var(--line);
-    padding: 28px;
-  }
+  /* image-pending panel: looks deliberate until real photos are dropped in */
+  .pending { width: 100%; height: 100%; background-color: var(--fog); background-image: radial-gradient(circle, #C9C9C4 1.2px, transparent 1.4px); background-size: 16px 16px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: clamp(18px, 3vw, 32px); }
+  .pending b { font-weight: 600; font-size: clamp(26px, 4vw, 44px); color: var(--ink); line-height: 1; background: var(--fog); padding: 2px 8px 2px 0; }
+  .pending span { font-size: 14px; color: var(--stone); background: var(--fog); padding: 4px 8px 0 0; margin-top: 6px; }
+  .pending::before { content: ""; width: 16px; height: 16px; border-radius: 50%; background: var(--punch); margin-bottom: auto; }
 
-  .panel__label,
-  .section-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 14px;
-  }
-  .section-label::before {
-    content: "";
-    width: 20px; height: 1px;
-    background-color: var(--accent);
-    flex-shrink: 0;
-  }
+  /* more work */
+  .more { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 20px; }
+  .tile .pending b { font-size: clamp(20px, 2.6vw, 34px); }
+  .tile .pending span { font-size: 13px; }
+  .tile__img { aspect-ratio: 3 / 2; border-radius: 16px; overflow: hidden; background: var(--white); }
+  .tile__img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: filter .3s; }
+  .tile:hover .tile__img img, .tile:focus-visible .tile__img img { filter: grayscale(0); }
+  .tile h3 { font-size: 18px; margin-top: 12px; letter-spacing: -0.01em; }
+  .tile p { font-size: 14px; color: var(--stone); margin-top: 2px; }
 
-  .panel__body { font-size: 14px; line-height: 1.75; color: var(--body-text); }
+  /* clients */
+  .clients { display: flex; flex-wrap: wrap; gap: 8px 10px; }
+  .clients span { font-size: clamp(18px, 2.2vw, 28px); font-weight: 500; color: var(--ink); letter-spacing: -0.02em; }
+  .clients span::after { content: "/"; color: var(--line); margin-left: 10px; font-weight: 300; }
+  .clients span:last-child::after { content: ""; }
 
-  .panel__links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 18px;
-  }
-  .panel__links a {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--mid);
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    padding: 5px 10px;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .panel__links a:hover { color: var(--accent); border-color: var(--accent); }
+  /* downloads */
+  .dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .dl__item { background: var(--fog); border-radius: 24px; padding: clamp(18px, 2.4vw, 28px); display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: clamp(16px, 2.4vw, 28px); align-items: center; }
+  .dl__thumb { border-radius: 8px; overflow: hidden; border: 1px solid var(--line); background: var(--white); }
+  .dl__thumb img { width: 100%; height: auto; }
+  .dl__item h3 { font-size: 24px; }
+  .dl__item p { font-size: 15px; margin: 6px 0 16px; }
+  @media (max-width: 980px) { .dl { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .dl__item { grid-template-columns: 92px minmax(0, 1fr); } .dl__item h3 { font-size: 20px; } }
 
-  /* ════════ ABOUT / CV VIEW ════════ */
-  .cv { max-width: 900px; }
+  /* recommendations */
+  .quotes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .quote { background: var(--fog); border-radius: 24px; padding: 28px; display: flex; flex-direction: column; }
+  .quote blockquote { font-size: 17px; line-height: 1.55; color: var(--ink); }
+  .quote blockquote::before { content: "“"; display: block; font-size: 56px; line-height: 0.6; color: var(--punch); font-weight: 600; margin-bottom: 10px; }
+  .quote figcaption { margin-top: auto; padding-top: 20px; font-size: 14px; line-height: 1.4; color: var(--stone); }
+  .quote figcaption b { display: block; color: var(--ink); font-weight: 600; font-size: 16px; }
+  @media (max-width: 980px) { .quotes { grid-template-columns: minmax(0, 1fr); } }
 
-  /* Header row: small portrait + intro text (no big name — the logo already says it) */
-  .cv__head {
-    display: flex;
-    align-items: flex-start;
-    gap: 22px;
-    margin-bottom: 18px;
-  }
-  .cv__portrait {
-    width: 96px;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    flex-shrink: 0;
-    border: 1px solid var(--line);
-    filter: grayscale(1);
-    display: block;
-  }
-  .cv__role { font-size: 17px; color: var(--ink); font-weight: 500; margin-bottom: 4px; }
-  .cv__sub { font-size: 13px; color: var(--mid); margin-bottom: 12px; }
+  /* contact */
+  .contact { background: var(--ink); color: #B9B9B4; border-radius: 32px; padding: clamp(28px, 5vw, 64px); display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 32px; align-items: end; }
+  .contact h2 { color: var(--white); font-size: clamp(32px, 4.6vw, 64px); letter-spacing: -0.035em; }
+  .contact p { margin-top: 16px; max-width: 28em; }
+  .contact__links { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+  .contact__links a { color: var(--white); font-size: clamp(17px, 1.6vw, 20px); font-weight: 500; border-bottom: 2px solid var(--punch); padding-bottom: 2px; word-break: break-word; }
+  .contact__links a:hover { color: var(--zest); }
+  .contact__btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .contact .btn { border-color: var(--white); }
+  .contact .btn--ghost { background: transparent; color: var(--white); }
+  .contact .btn--ghost:hover { background: var(--zest); color: var(--ink); border-color: var(--zest); }
 
-  .cv__badge {
-    display: inline-block;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 6px 12px;
-    margin-bottom: 22px;
-  }
+  .foot { padding: 28px 0 40px; font-size: 14px; color: var(--stone); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
-  .cv__contact {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 22px;
-    font-size: 13px;
-    color: var(--body-text);
-    margin-bottom: 28px;
-  }
-  .cv__contact a { color: var(--body-text); transition: color 0.2s; }
-  .cv__contact a:hover { color: var(--accent); }
+  /* ════════ PROJECT PAGE ════════ */
+  .proj { padding: clamp(24px, 4vw, 48px) 0 clamp(48px, 6vw, 80px); }
+  .proj__back { display: inline-block; font-weight: 500; color: var(--ink); margin-bottom: 22px; border-bottom: 2px solid var(--line); }
+  .proj__back:hover { border-color: var(--punch); }
+  .proj__media { border-radius: 28px; overflow: hidden; aspect-ratio: 3 / 2; max-height: 76vh; width: 100%; background: var(--fog); }
+  .proj__media img { width: 100%; height: 100%; object-fit: cover; }
+  .proj__head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); margin-top: clamp(24px, 3.5vw, 44px); }
+  .proj__head h1 { font-size: clamp(36px, 5.4vw, 76px); letter-spacing: -0.035em; }
+  .proj__facts { border-top: 1px solid var(--line); align-self: end; }
+  .proj__facts div { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .proj__facts dt { color: var(--stone); }
+  .proj__facts dd { color: var(--ink); font-weight: 500; text-align: right; }
+  .proj__cols { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); margin-top: clamp(24px, 3vw, 40px); }
+  .proj__cols h2 { font-size: 20px; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .proj__cols p { max-width: 38em; }
+  .proj__links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .proj__links a { font-size: 14px; font-weight: 500; color: var(--ink); border: 1.5px solid var(--line); border-radius: 999px; padding: 6px 14px; transition: border-color .15s, background-color .15s; }
+  .proj__links a:hover { border-color: var(--ink); background: var(--zest); }
+  .proj__next { margin-top: clamp(36px, 5vw, 64px); padding-top: 24px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+  .proj__next a { font-size: clamp(22px, 3vw, 36px); font-weight: 600; color: var(--ink); letter-spacing: -0.03em; }
+  .proj__next a:hover { color: var(--punch); }
+  .proj__next span { color: var(--stone); font-size: 15px; }
 
-  .cv__rule { height: 1px; background-color: var(--accent); margin: 0 0 32px; }
+  /* case-study layout */
+  .case { margin-top: clamp(28px, 4vw, 48px); }
+  .case__row { display: grid; grid-template-columns: minmax(140px, 0.32fr) minmax(0, 1fr); gap: clamp(16px, 4vw, 64px); padding: clamp(20px, 2.6vw, 30px) 0; border-top: 1px solid var(--line); }
+  .case__row h2 { font-size: 20px; letter-spacing: -0.01em; }
+  .case__row p { max-width: 40em; }
+  .case__row p + p { margin-top: 14px; }
+  .case__list { list-style: none; display: grid; gap: 14px; max-width: 40em; }
+  .case__list li { position: relative; padding-left: 22px; }
+  .case__list li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); }
+  .case__stat { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+  .case__stat b { font-weight: 600; font-size: 28px; letter-spacing: -0.02em; line-height: 1; color: var(--ink); }
+  .case__stat span { font-size: 15px; color: var(--stone); }
 
-  .cv__section { margin-bottom: 36px; }
+  .films { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 760px; }
+  .films video { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 16px; background: var(--fog); display: block; }
+  .films figcaption { font-size: 14px; color: var(--stone); margin-top: 8px; }
+  .lead__media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: clamp(28px, 4vw, 48px); }
+  .gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 16px; background: var(--fog); }
+  .gallery figcaption { font-size: 14px; color: var(--stone); margin-top: 8px; line-height: 1.4; }
 
-  .cv__body { font-size: 14px; line-height: 1.85; color: var(--body-text); max-width: 70ch; }
-  .cv__body a { color: var(--accent); border-bottom: 1px solid rgba(232,100,27,0.3); }
+  /* teams */
+  .teams { border-top: 1.5px solid var(--ink); }
+  .team { border-bottom: 1px solid var(--line); }
+  .team summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 250px minmax(0, 1fr) 118px 34px; gap: 20px; align-items: center; padding: 20px 0; }
+  .team summary::-webkit-details-marker { display: none; }
+  .team summary::after { content: "+"; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--ink); display: grid; place-items: center; font-size: 20px; line-height: 1; color: var(--ink); transition: transform .2s, background-color .2s; }
+  .team[open] summary::after { transform: rotate(45deg); background: var(--punch); border-color: var(--punch); color: var(--white); }
+  .team summary:focus-visible { outline: 3px solid var(--punch); outline-offset: 2px; border-radius: 6px; }
+  .team__name { font-size: clamp(20px, 2.2vw, 26px); font-weight: 600; color: var(--ink); letter-spacing: -0.02em; line-height: 1.15; }
+  .team__line { font-size: 16px; }
+  .team__years { font-size: 15px; color: var(--stone); white-space: nowrap; text-align: right; }
+  .team__body { display: grid; grid-template-columns: 250px minmax(0, 1fr) 118px 34px; column-gap: 20px; padding-bottom: 26px; }
+  .team__body > * { grid-column: 2 / 4; max-width: 42em; }
+  .team__body > * + * { margin-top: 12px; }
+  .team__body strong { color: var(--ink); font-weight: 600; }
+  .team__link { color: var(--ink); font-weight: 500; border-bottom: 2px solid var(--punch); }
+  .team__link:hover { background: var(--zest); }
 
-  /* What I offer — 3 columns */
-  .cv__offer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-  }
-  .cv__offer h3 {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-  .cv__offer p { font-size: 13px; line-height: 1.6; color: var(--body-text); }
+  /* ════════ CV PAGE ════════ */
+  .cv { padding: clamp(32px, 5vw, 72px) 0 clamp(48px, 6vw, 80px); }
+  .cv__top { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: end; }
+  .cv__portrait { width: 180px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 24px; filter: grayscale(1); }
+  .cv__top h1 { font-size: clamp(34px, 5vw, 68px); letter-spacing: -0.035em; }
+  .cv__top p { font-size: clamp(17px, 1.5vw, 20px); max-width: 40em; margin-top: 18px; }
+  .cv__dl { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 
-  /* Pills (core skills, clients) */
-  .cv__pills { display: flex; flex-wrap: wrap; gap: 8px; }
-  .cv__pill {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    color: var(--body-text);
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    padding: 6px 10px;
-  }
-  .cv__pill--accent { color: var(--accent); border-color: rgba(232,100,27,0.4); }
+  .gantt { margin-top: clamp(36px, 5vw, 64px); background-color: var(--fog); border-radius: 28px; padding: clamp(18px, 3vw, 36px); }
+  .gantt h2 { font-size: clamp(22px, 2.6vw, 32px); margin-bottom: 6px; }
+  .gantt > p { font-size: 15px; color: var(--stone); margin-bottom: 22px; }
+  .gantt__axis { position: relative; height: 26px; margin-left: 0; border-bottom: 1.5px solid var(--ink); }
+  .gantt__axis span { position: absolute; bottom: 4px; transform: translateX(-50%); font-size: 13px; font-weight: 500; color: var(--stone); }
+  .gantt__rows { position: relative; padding-top: 10px; }
+  .gantt__row { position: relative; height: 54px; }
+  .gantt__barwrap { position: absolute; top: 6px; height: 14px; }
+  .gantt__bar { height: 14px; border-radius: 999px; background: var(--ink); width: 100%; }
+  .gantt__bar--punch { background: var(--punch); }
+  .gantt__bar--zest { background: var(--zest); border: 1.5px solid var(--ink); }
+  .gantt__bar--grey { background: var(--stone); }
+  .gantt__bar--edu { background: repeating-linear-gradient(90deg, var(--ink) 0 3px, transparent 3px 7px); }
+  .gantt__label { position: absolute; top: 24px; white-space: nowrap; font-size: 14px; color: var(--ink); font-weight: 500; background: var(--fog); padding: 0 6px 0 0; }
+  .gantt__label em { font-style: normal; font-weight: 400; color: var(--stone); }
+  .gantt__label--right { transform: translateX(-100%); padding: 0 0 0 6px; }
+  .gantt__now { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1.5px dashed var(--punch); }
 
-  /* Experience */
-  .cv__job { margin-bottom: 24px; }
-  .cv__job-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .cv__job-title {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 500;
-    font-size: 17px;
-    color: var(--ink);
-  }
-  .cv__job-title span { font-weight: 400; font-size: 13px; color: var(--mid); }
-  .cv__job-date {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--accent);
-    white-space: nowrap;
-  }
-  .cv__job-org { font-size: 13px; color: var(--mid); margin: 2px 0 10px; }
-  .cv__job ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-  .cv__job li {
-    position: relative;
-    padding-left: 18px;
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--body-text);
-  }
-  .cv__job li::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 9px;
-    width: 5px; height: 5px;
-    background-color: var(--accent);
-    border-radius: 50%;
-  }
-  .cv__earlier { font-size: 13px; line-height: 1.7; color: var(--mid); margin-top: 4px; }
-  .cv__earlier strong { color: var(--body-text); font-weight: 500; }
+  .cv__grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); margin-top: clamp(36px, 5vw, 64px); }
+  .cv__grid h2 { font-size: clamp(22px, 2.6vw, 32px); margin-bottom: 18px; }
+  .job { padding: 20px 0; border-top: 1px solid var(--line); }
+  .job__head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .job h3 { font-size: 20px; letter-spacing: -0.01em; }
+  .job__date { font-size: 15px; color: var(--stone); white-space: nowrap; }
+  .job__org { font-size: 15px; color: var(--stone); margin: 2px 0 10px; }
+  .job ul { list-style: none; display: grid; gap: 8px; }
+  .job li { position: relative; padding-left: 18px; font-size: 16px; }
+  .job li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
+  .cv__earlier { padding-top: 16px; border-top: 1px solid var(--line); font-size: 15px; color: var(--stone); }
+  .side { display: grid; gap: 34px; align-content: start; }
+  .side h2 { margin-bottom: 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips span { font-size: 14px; font-weight: 500; color: var(--ink); background: var(--fog); border-radius: 999px; padding: 6px 13px; }
+  .side p { font-size: 16px; }
+  .side p strong { color: var(--ink); font-weight: 600; display: block; }
+  .side p + p { margin-top: 12px; }
 
-  /* Education + Languages — 2 columns */
-  .cv__two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-  .cv__edu-title { font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 15px; color: var(--ink); }
-  .cv__edu-sub { font-size: 13px; color: var(--mid); margin-top: 2px; margin-bottom: 12px; }
-  .cv__lang { font-size: 14px; line-height: 1.8; color: var(--body-text); }
-
-  /* Download button */
-  .cv__download {
-    display: inline-block;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 0.22em;
-    color: #fff;
-    background-color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 13px 28px;
-    transition: background-color 0.2s, color 0.2s;
+  /* ════════ RESPONSIVE ════════ */
+  @media (max-width: 980px) {
+    .hero__grid, .contact, .proj__head, .proj__cols, .cv__grid { grid-template-columns: 1fr; }
+    .offer { grid-template-columns: 1fr; }
+    .lead { grid-template-columns: 1fr; gap: 20px; }
+    .lead:nth-child(even) .lead__media { order: 0; }
+    .more { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .case__row { grid-template-columns: 1fr; gap: 10px; }
+    .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .films { grid-template-columns: minmax(0, 1fr); }
+    .team summary { grid-template-columns: minmax(0, 1fr) 34px; gap: 6px 16px; }
+    .team summary::after { grid-column: 2; grid-row: 1 / span 3; }
+    .team__name, .team__line, .team__years { grid-column: 1; text-align: left; }
+    .team__body { display: block; }
   }
-  .cv__download:hover { background-color: transparent; color: var(--accent); }
-
-  /* ════════ MOBILE ════════ */
-  @media (max-width: 900px) {
-    .sidebar {
-      position: static;
-      width: 100%;
-      height: auto;
-      border-right: none;
-      border-bottom: 1px solid var(--line);
-      padding: 28px 24px 20px 24px;
-    }
-    .main { margin-left: 0; padding: 28px 24px 48px 24px; }
-    .cards { grid-template-columns: 1fr; }
-    .panels { grid-template-columns: 1fr; }
-    .cv__offer { grid-template-columns: 1fr; gap: 20px; }
-    .cv__two { grid-template-columns: 1fr; gap: 24px; }
-    .side-foot { margin-top: 20px; flex-direction: row; flex-wrap: wrap; gap: 8px 22px; border-top: none; padding-top: 12px; }
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .bar__in { height: 60px; }
+    .bar__logo img { height: 12px; }
+    .bar__in { gap: 10px; }
+    .bar__nav { gap: 0; }
+    .bar__nav a { padding: 7px 8px; font-size: 14px; }
+    .bar__nav a.bar__cta { display: none; }
+    .bar__logo { flex-shrink: 0; }
+    .hero__img { aspect-ratio: 1 / 1; border-radius: 22px; }
+    .cv__top { grid-template-columns: 1fr; }
+    .cv__portrait { width: 120px; border-radius: 18px; }
+    .gantt__label { font-size: 12.5px; }
+    .gantt__label em { display: none; }
+    .gantt__axis span { font-size: 12px; }
+    .gantt__axis span.minor { display: none; }
+    .btn { padding: 13px 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .lead__media img { transition: none; }
+    .team summary::after { transition: none; }
+    .marquee__track { animation: none; }
   }
 </style>
 </head>
 <body>
 
-  <!-- ════════════════ SIDEBAR ════════════════ -->
-  <aside class="sidebar">
-
-    <!-- LOGO -->
-    <a class="side-logo" href="#" aria-label="Fábio Salvador — home">
-      <img src="images/logo.svg" alt="Fábio Salvador">
-      <div class="side-logo__rule"></div>
-    </a>
-
-    <!-- DATE / LOCATION -->
-    <div class="side-meta">
-      <span class="side-meta__date" id="live-date">—</span>
-      <span class="side-meta__loc">Lisbon</span>
-      <span class="side-meta__loc side-meta__loc--alt">Sometimes London</span>
+  <header class="bar">
+    <div class="wrap bar__in">
+      <a class="bar__logo" href="#" aria-label="Fábio Salvador, home"><img src="images/logo.svg" alt="Fábio Salvador"></a>
+      <nav class="bar__nav" aria-label="Main">
+        <a href="#work" data-nav="work">Work</a>
+        <a href="#cv" data-nav="cv">CV</a>
+        <a href="#downloads" data-nav="downloads">Downloads</a>
+        <a class="bar__cta" href="#contact">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- NAV LIST — built by JS from data below -->
-    <nav class="nav-list" id="nav-list"></nav>
+  <main>
 
-    <!-- FOOT — social + email -->
-    <div class="side-foot">
-      <a href="https://www.linkedin.com/in/fabio-a-salvador" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a>
-      <a href="https://www.behance.net/fabiosalvador" target="_blank" rel="noopener noreferrer">Behance &#8599;</a>
-      <a href="mailto:fsilvasalvador@gmail.com">Email &#8599;</a>
-    </div>
+    <!-- ════════════════ HOME ════════════════ -->
+    <div class="view" id="view-home">
 
-  </aside>
-
-  <!-- ════════════════ MAIN ════════════════ -->
-  <main class="main">
-
-    <!-- HOME VIEW: project grid -->
-    <section class="view" id="view-home">
-      <div class="cards" id="cards"></div>
-    </section>
-
-    <!-- ABOUT / CV VIEW -->
-    <section class="view" id="view-about">
-      <div class="cv">
-        <div class="cv__head">
-          <img class="cv__portrait" src="images/about/portrait.jpg" alt="Portrait of Fábio Salvador">
+      <section class="hero">
+        <div class="wrap hero__grid">
           <div>
-            <p class="cv__role">Design Manager · Industrial Design</p>
-            <p class="cv__sub">Team Leadership · Client &amp; Supplier Management · Project Delivery</p>
-            <span class="cv__badge">Available for part-time &amp; interim engagements</span>
+            <h1>I get your products from first sketch to factory floor.</h1>
+            <p class="hero__lede">
+              I'm Fábio, an <strong>industrial design manager</strong> available for ongoing projects,
+              project management, team building and training.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--solid" href="#contact"><span class="btn__dot"></span>Contact</a>
+              <a class="btn" href="#work">See the work</a>
+            </div>
+          </div>
+          <!-- HERO IMAGE: swap the file name below for any image you like (portrait shape works best) -->
+          <figure class="hero__img"><img src="images/about/portrait.jpg" alt="Fábio Salvador at his desk, talking through a project"></figure>
+        </div>
+      </section>
+
+      <section class="band" aria-label="Services">
+        <div class="marquee marquee--punch">
+          <div class="marquee__track">
+            <p class="marquee__set"><span>Industrial design</span><i></i><span>Project management</span><i></i><span>Product development and delivery</span><i></i><span>Manufacturing and operations</span><i></i><span>Director of product</span><i></i></p>
+            <p class="marquee__set" aria-hidden="true"><span>Industrial design</span><i></i><span>Project management</span><i></i><span>Product development and delivery</span><i></i><span>Manufacturing and operations</span><i></i><span>Director of product</span><i></i></p>
           </div>
         </div>
-        <div class="cv__contact">
-          <span>Lisbon, Portugal</span>
-          <a href="mailto:fsilvasalvador@gmail.com">fsilvasalvador@gmail.com</a>
-          <a href="https://www.linkedin.com/in/fabio-a-salvador" target="_blank" rel="noopener noreferrer">linkedin.com/in/fabio-a-salvador</a>
+        <div class="marquee marquee--ink marquee--reverse">
+          <div class="marquee__track">
+            <p class="marquee__set"><span>MVP</span><i></i><span>CMF</span><i></i><span>DFM</span><i></i><span>DFA</span><i></i><span>LCA</span><i></i><span>BOM</span><i></i><span>EVT</span><i></i><span>DVT</span><i></i><span>PVT</span><i></i><span>CTB</span><i></i><span>NPI</span><i></i><span>QA</span><i></i><span>QC</span><i></i><span>MVE</span><i></i><span>Certification</span><i></i><span>Sourcing</span><i></i></p>
+            <p class="marquee__set" aria-hidden="true"><span>MVP</span><i></i><span>CMF</span><i></i><span>DFM</span><i></i><span>DFA</span><i></i><span>LCA</span><i></i><span>BOM</span><i></i><span>EVT</span><i></i><span>DVT</span><i></i><span>PVT</span><i></i><span>CTB</span><i></i><span>NPI</span><i></i><span>QA</span><i></i><span>QC</span><i></i><span>MVE</span><i></i><span>Certification</span><i></i><span>Sourcing</span><i></i></p>
+          </div>
         </div>
-        <div class="cv__rule"></div>
+      </section>
 
-        <!-- PROFILE -->
-        <section class="cv__section">
-          <span class="section-label">Profile</span>
-          <p class="cv__body">
-            Industrial designer and design studio founder with 12+ years leading
-            multidisciplinary teams from concept through mass production. A decade running
-            <a href="https://makersdepartment.com" target="_blank" rel="noopener noreferrer">Makers Department</a>
-            sits alongside managing a global dealership rollout for McLaren Automotive and
-            lecturing in creative project management at Kingston University. Comfortable
-            owning both the commercial side of a project — client negotiation, budgets,
-            contracts, risk and liability — and the creative one: DFM, certifications, and
-            design rights and patents. Equally experienced building, hiring and training
-            design teams. I offer part-time and interim support to design studios that need
-            hands-on team management, design mentorship, or senior oversight of project
-            delivery, backed by a network of vetted suppliers and freelancers built over
-            12+ years.
+      <section class="sec sec--fog">
+        <div class="wrap">
+          <div class="sec__head">
+            <h2>What I do inside your team</h2>
+          </div>
+          <div class="offer">
+            <div class="offer__item">
+              <h3>Run the project</h3>
+              <p>Plans, budgets, suppliers and clients kept moving in the same direction, on brief and on schedule.</p>
+            </div>
+            <div class="offer__item">
+              <h3>Lead the design</h3>
+              <p>Hands-on industrial design from concept and CMF through to CAD, or steering the designers you already have.</p>
+            </div>
+            <div class="offer__item">
+              <h3>Get it made</h3>
+              <p>Design for manufacture, prototyping, supplier handling, quality control and certification, through to production.</p>
+            </div>
+          </div>
+          <p class="offer__note">
+            <strong>I've sat on your side of the table.</strong> I founded and ran my own industrial design studio from 2015,
+            so I know what agency delivery looks like from the inside: the client calls, the budgets and the Friday deadlines.
           </p>
-        </section>
+        </div>
+      </section>
 
-        <!-- WHAT I OFFER -->
-        <section class="cv__section">
-          <span class="section-label">What I offer</span>
-          <div class="cv__offer">
+      <section class="sec" id="work">
+        <div class="wrap">
+          <div class="sec__head">
+            <h2>Selected work</h2>
+            <p>Four projects where I led the design, ran the project, or took it into production. Often all three.</p>
+          </div>
+          <div id="leads"></div>
+        </div>
+      </section>
+
+      <section class="sec" id="teams">
+        <div class="wrap">
+          <div class="sec__head">
+            <h2>Teams I've worked in</h2>
+            <p>I've built my own team, joined other studios' teams, and taught students to run projects. Tap a row to read more.</p>
+          </div>
+          <div class="teams">
+
+            <details class="team">
+              <summary>
+                <span class="team__name">Makers Department</span>
+                <span class="team__line">Founder. Grew the team from one to five and ran three to four projects at once.</span>
+                <span class="team__years">2015 – now</span>
+              </summary>
+              <div class="team__body">
+                <p>I started Makers Department in 2015 and incorporated it in 2016. My first contractor came on in 2018 and my first full-time employee in 2019. We were mostly industrial designers until 2022, when a senior design engineer joined to own design for manufacture across our projects. At our peak, in 2021 and 2022, we were four to five people running three to four projects at the same time.</p>
+                <p><strong>How I ran it.</strong> Short stand-ups where everyone shared what they'd done and got feedback from the others, planning at the start of each week, and every project tracked against its budget and timeline. I took on the stakeholder problems so the team could keep working.</p>
+                <p><strong>How I trained and motivated people.</strong> One-to-one sessions when I spotted a skill gap, such as CAD surfacing. Social Fridays visiting local makers, workshops and creative people. And time set aside for our own projects, with looser briefs than client work allows, so everyone had something they owned.</p>
+              </div>
+            </details>
+
+            <details class="team">
+              <summary>
+                <span class="team__name">UNIT9</span>
+                <span class="team__line">Industrial designer and head of fabrication inside an agency team of five, for Škoda.</span>
+                <span class="team__years">2026</span>
+              </summary>
+              <div class="team__body">
+                <p>I joined UNIT9's team for the Škoda DuoBell, working alongside their design engineer and a CAD designer, with a workshop on manufacture. I managed the mechanical design, brought in the University of Salford's research and took the bell through suppliers into production.</p>
+                <p><a class="team__link" href="#skoda-duo-bell">Read the DuoBell case study</a></p>
+              </div>
+            </details>
+
+            <details class="team">
+              <summary>
+                <span class="team__name">Hyphen Design</span>
+                <span class="team__line">Started as a junior designer, grew into running the McLaren programme.</span>
+                <span class="team__years">2013 – 2024</span>
+              </summary>
+              <div class="team__body">
+                <p>Client work for Bosch Appliances, McLaren and Tangle Teezer, among others. I moved from sketches and CAD into project and operations management, and two of the accounts, McLaren and Dishmatic, carried on with me when I set up my own studio.</p>
+                <p><a class="team__link" href="#mclaren-configurator">Read the McLaren case study</a></p>
+              </div>
+            </details>
+
+            <details class="team">
+              <summary>
+                <span class="team__name">Hammond Studios with KMI</span>
+                <span class="team__line">Lead industrial designer on Ted Baker's 88 fragrance bottles, launched worldwide in 2019.</span>
+                <span class="team__years">2017 – 2018</span>
+              </summary>
+              <div class="team__body">
+                <p>Hammond Studios partnered with the agency KMI on a fragrance line for Ted Baker. I was the main industrial designer, designing and engineering a series of perfume bottles in several sizes. The range was manufactured and launched worldwide in 2019.</p>
+              </div>
+            </details>
+
+            <details class="team">
+              <summary>
+                <span class="team__name">Fuse</span>
+                <span class="team__line">Prototype manager between their creative team and my technical team.</span>
+                <span class="team__years">2022</span>
+              </summary>
+              <div class="team__body">
+                <p>Fuse was developing an interactive wand: an electromechanical device full of motion sensors that reacts differently to different gestures. I managed the prototype, translating between their creative team and my technical team, and took it from rough concepts to a working prototype for demonstrations.</p>
+              </div>
+            </details>
+
+            <details class="team">
+              <summary>
+                <span class="team__name">Kingston University</span>
+                <span class="team__line">Taught project management to creative students working on live briefs from the BBC and Gov.uk.</span>
+                <span class="team__years">2023</span>
+              </summary>
+              <div class="team__body">
+                <p>Part-time tutor in the Creative Industries department, teaching project management to first- and second-year media production and marketing students: 30 to 35 at a time, working in teams of five. We brought in live briefs from the BBC, Gov.uk and other organisations, and students presented their work to people who actually work there. Some projects went on to become real, and some students got placements from them.</p>
+                <p><strong>How I taught.</strong> With a co-teacher, we opened each phase with examples and case studies, then set exercises so students applied the methods to their own projects. My part was going table by table: giving feedback, and showing teams practical ways to brainstorm, run a productive discussion and gather feedback.</p>
+              </div>
+            </details>
+
+            <details class="team">
+              <summary>
+                <span class="team__name">PurePods</span>
+                <span class="team__line">Designer and shareholder. Design, manufacturing, Amazon, stock and logistics.</span>
+                <span class="team__years">2020 – 2025</span>
+              </summary>
+              <div class="team__body">
+                <p>PurePods started as a design job and became a business I part-owned. I designed the refillable filter and developed it with our overseas manufacturers, then ended up running most of the rest too: pricing, the Amazon and Shopify stores, marketing, and logistics across the UK and EU.</p>
+                <p>When Brita changed their jugs after our launch and broke compatibility, we designed an adapter, 3D-printed and checked for safety and patents first, then tooled for volume. We sent it free to customers who complained and later shipped it with every pack. Having my own money in a product taught me to think about cost and margin, not just form.</p>
+                <p><a class="team__link" href="#purepods">Read the PurePods project</a></p>
+              </div>
+            </details>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="sec sec--fog">
+        <div class="wrap">
+          <div class="sec__head">
+            <h2>More products I've worked on</h2>
+          </div>
+          <div class="more" id="more"></div>
+        </div>
+      </section>
+
+      <section class="sec" id="recommendations">
+        <div class="wrap">
+          <div class="sec__head">
+            <h2>What people say</h2>
+            <p>From recommendations on <a href="https://www.linkedin.com/in/fabio-a-salvador" target="_blank" rel="noopener noreferrer" style="border-bottom:2px solid var(--punch);color:var(--ink)">LinkedIn</a>, by clients and by people I've managed.</p>
+          </div>
+          <div class="quotes">
+            <figure class="quote"><blockquote>Fabio has a unique knack for bringing order to complex projects, keeping clients, suppliers, and leadership completely at peace. He is a trustworthy, highly capable professional and a genuinely great human being to have on any team.</blockquote><figcaption><b>Cameron Treeby</b><span>Owner, Playforever Ltd. Managed Fábio at Hyphen Design</span></figcaption></figure>
+            <figure class="quote"><blockquote>As an exceptional industrial product designer, he bridges rigorous technical execution and user-centric aesthetics from initial concept to manufacturing-ready CAD. Highly adaptable and detail-oriented, Fabio elevates any product team.</blockquote><figcaption><b>Valerio Rossi</b><span>Executive Producer, Innovation Lead. Client</span></figcaption></figure>
+            <figure class="quote"><blockquote>When I launched Innotrend, having him join as a partner was a no-brainer. He expertly handled Design, IP, and Manufacturing, balancing creative talent with operational drive. His proactive energy is infectious.</blockquote><figcaption><b>Daniel Neumann</b><span>MD, Innotrend Ltd. Worked with Fábio since 2015</span></figcaption></figure>
+            <figure class="quote"><blockquote>He's the kind of manager who genuinely leads from the front. With his direction, our team managed to ship two products to market and win a prestigious Desall Challenge. What really stands out about Fabio isn't just the project results, it's how he treats his people.</blockquote><figcaption><b>Amit Gaikwad</b><span>Product, HW/SW integration, ex-Dyson. Reported to Fábio</span></figcaption></figure>
+            <figure class="quote"><blockquote>He created the perfect environment for me to enhance my skills and gain a comprehensive understanding of the design industry. I couldn't have asked for a better mentor.</blockquote><figcaption><b>Dylan Parry</b><span>Project Manager, Scena Ltd. Reported to Fábio</span></figcaption></figure>
+            <figure class="quote"><blockquote>His passion for design and quality is immediately obvious, and it carries through into all the work he delivers. Working together feels effortless, and is very enjoyable, and the results speak for themselves.</blockquote><figcaption><b>Pambo Palas</b><span>Co-Founder and CTO, Boost Inc. Client</span></figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <div class="wrap">
+          <div class="sec__head">
+            <h2>Clients and collaborations</h2>
+          </div>
+          <div class="clients">
+            <span>McLaren Automotive</span><span>Škoda</span><span>Ted Baker</span><span>Tangle Teezer</span><span>Dishmatic</span><span>Playforever</span><span>Joseph Joseph</span><span>Unilever</span><span>Bosch Appliances</span>
+            <span>Victoria and Albert Museum</span><span>Royal Air Force</span><span>Wavetec</span><span>Valkyrie Industries</span>
+            <span>Sensate</span><span>Flowbio</span><span>Gov.uk</span><span>BBC</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="downloads" style="padding-top:0">
+        <div class="wrap">
+          <div class="sec__head">
+            <h2>Downloads</h2>
+          </div>
+          <div class="dl">
+            <div class="dl__item">
+              <a class="dl__thumb" href="downloads/Fabio-Salvador-CV.pdf" download aria-label="Download CV"><img src="images/downloads/cv.jpg" alt="First page of the CV" loading="lazy"></a>
+              <div>
+                <h3>CV</h3>
+                <p>Two pages. Experience, skills and career timeline.</p>
+                <a class="btn btn--solid" href="downloads/Fabio-Salvador-CV.pdf" download><span class="btn__dot"></span>Download PDF</a>
+              </div>
+            </div>
+            <div class="dl__item">
+              <a class="dl__thumb" href="downloads/Fabio-Salvador-Design-to-Production.pdf" download aria-label="Download Design to production"><img src="images/downloads/proposal.jpg" alt="Cover of Design to production" loading="lazy"></a>
+              <div>
+                <h3>Design to production</h3>
+                <p>How I work with studios and agencies: projects, engagement and recommendations. 12 pages.</p>
+                <a class="btn btn--solid" href="downloads/Fabio-Salvador-Design-to-Production.pdf" download><span class="btn__dot"></span>Download PDF</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="contact" style="padding-top:0">
+        <div class="wrap">
+          <div class="contact">
             <div>
-              <h3>End-to-End Industrial Design</h3>
-              <p>Concept to manufacturing, end to end.</p>
+              <h2>Got a project that needs a steady pair of hands?</h2>
+              <p>Tell me what you're building and where it's stuck. I'll tell you honestly whether I can help.</p>
+              <div class="contact__btns">
+                <a class="btn" href="mailto:contact@fabiosalvador.com?subject=Project%20enquiry"><span class="btn__dot"></span>Email me</a>
+                <a class="btn btn--ghost" id="chat-btn" href="mailto:contact@fabiosalvador.com?subject=Book%20a%20chat">Book a chat</a>
+              </div>
             </div>
+            <div class="contact__links">
+              <a href="mailto:contact@fabiosalvador.com">contact@fabiosalvador.com</a>
+              <a href="https://www.linkedin.com/in/fabio-a-salvador" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://www.behance.net/fabiosalvador" target="_blank" rel="noopener noreferrer">Behance</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ════════════════ CV ════════════════ -->
+    <div class="view" id="view-cv">
+      <section class="cv">
+        <div class="wrap">
+          <div class="cv__top">
+            <img class="cv__portrait" src="images/about/portrait.jpg" alt="Portrait of Fábio Salvador">
             <div>
-              <h3>Design &amp; Project Manager</h3>
-              <p>Coordinating designers, engineers, suppliers and clients on-brief and on schedule.</p>
-            </div>
-            <div>
-              <h3>Supply Chain Sourcing</h3>
-              <p>Supplier relationships and production oversight through an established network.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- CORE SKILLS -->
-        <section class="cv__section">
-          <span class="section-label">Core skills</span>
-          <div class="cv__pills">
-            <span class="cv__pill">Team &amp; Studio Management</span>
-            <span class="cv__pill">Design Mentorship &amp; Training</span>
-            <span class="cv__pill">Client Negotiation &amp; Contracts</span>
-            <span class="cv__pill">Supply Chain Sourcing</span>
-            <span class="cv__pill">Budget &amp; Commercial Management</span>
-            <span class="cv__pill">DFM &amp; Certifications</span>
-            <span class="cv__pill">IP, Design Rights &amp; Patents</span>
-            <span class="cv__pill">CAD — SolidWorks, Fusion 360, Rhino</span>
-            <span class="cv__pill">3D Printing — FDM, SLA &amp; SLS</span>
-          </div>
-        </section>
-
-        <!-- EXPERIENCE -->
-        <section class="cv__section">
-          <span class="section-label">Professional experience</span>
-
-          <div class="cv__job">
-            <div class="cv__job-head">
-              <span class="cv__job-title">Founder &amp; Studio Lead</span>
-              <span class="cv__job-date">Oct 2015 – Present</span>
-            </div>
-            <p class="cv__job-org">Makers Department | London, United Kingdom &amp; Lisbon, Portugal</p>
-            <ul>
-              <li>Founded and built an industrial design consultancy, hiring, managing and mentoring an in-house team, for clients including McLaren Automotive, Joseph Joseph and Unilever, and startups including Valkyrie Industries, Sensate and Flowbio.</li>
-              <li>Set and held quality standards across every project, linking client, design team, engineers and manufacturing partners through an established Portuguese network.</li>
-              <li>Owned the commercial side of client relationships — negotiation, budgets, risk/liability — and advised on DFM, certifications and IP strategy.</li>
-            </ul>
-          </div>
-
-          <div class="cv__job">
-            <div class="cv__job-head">
-              <span class="cv__job-title">Operations Manager <span>(progressed from Junior Industrial Designer)</span></span>
-              <span class="cv__job-date">Feb 2013 – Dec 2023</span>
-            </div>
-            <p class="cv__job-org">Hyphen Design Ltd | Client: McLaren Automotive | Concurrent engagement</p>
-            <ul>
-              <li>Joined as Junior Industrial Designer, working on high-end client work including Bosch Appliances, McLaren and TangleTeezer; progressed to Operations Manager on McLaren's dealership configuration tools programme.</li>
-              <li>Ran supplier coordination, budgets and production oversight, delivering tools to 100+ dealerships worldwide, then continued as a retained consultant.</li>
-            </ul>
-          </div>
-
-          <div class="cv__job">
-            <div class="cv__job-head">
-              <span class="cv__job-title">University Lecturer, Creative Project Management</span>
-              <span class="cv__job-date">Jan 2023 – Dec 2023</span>
-            </div>
-            <p class="cv__job-org">Kingston University | Part-time</p>
-            <ul>
-              <li>Trained design, art direction and marketing students in project management and design thinking, guiding teams through live briefs with clients including Gov.uk and the BBC.</li>
-            </ul>
-          </div>
-
-          <div class="cv__job">
-            <div class="cv__job-head">
-              <span class="cv__job-title">Designer and Shareholder</span>
-              <span class="cv__job-date">Jul 2020 – Dec 2025</span>
-            </div>
-            <p class="cv__job-org">Innotrend Ltd, trading as PurePods | Self-employed | Greater London, United Kingdom</p>
-            <ul>
-              <li>Designed and engineered water-filtering products, managing overseas manufacturing partners through prototyping and scale-up.</li>
-              <li>Ran day-to-day operations: sales channels, inventory, customer service and marketing.</li>
-            </ul>
-          </div>
-
-          <div class="cv__job">
-            <div class="cv__job-head">
-              <span class="cv__job-title">Industrial Design Freelancer</span>
-              <span class="cv__job-date">Oct 2013 – Oct 2015</span>
-            </div>
-            <p class="cv__job-org">Freelance | London, United Kingdom</p>
-            <ul>
-              <li>Delivered independent design work for international clients, including multi-year support to Magnitone and packaging development for Re-Cleanse.</li>
-              <li>Worked within a small engineering team on the UK's first self-balancing personal transport product.</li>
-            </ul>
-          </div>
-
-          <p class="cv__earlier"><strong>Earlier:</strong> Product Design Intern, Paul Cocksedge Studio (2012–2013); Exhibition Assistant, MUDE Lisboa (2010–2011).</p>
-        </section>
-
-        <!-- EDUCATION + LANGUAGES -->
-        <section class="cv__section">
-          <div class="cv__two">
-            <div>
-              <span class="section-label">Education</span>
-              <p class="cv__edu-title">Design Degree (Licenciatura), Industrial and Product Design</p>
-              <p class="cv__edu-sub">Universidade Técnica de Lisboa, 2008–2011</p>
-              <p class="cv__edu-title">SolidWorks 3D CAD — Level B (Advanced)</p>
-              <p class="cv__edu-sub">2010</p>
-            </div>
-            <div>
-              <span class="section-label">Languages</span>
-              <p class="cv__lang">
-                Portuguese (Native)<br>
-                English (Full Professional Proficiency)<br>
-                Spanish (Proficient)<br>
-                French (Elementary)
+              <h1>Industrial design manager</h1>
+              <p>
+                Industrial designer with 12+ years taking products from concept through mass production, as a designer,
+                a project manager and a studio founder. I join design studios and agencies as a senior consultant and contractor to run
+                projects, lead design work and manage suppliers through to production.
               </p>
+              <div class="cv__dl">
+                <a class="btn btn--solid" href="#downloads"><span class="btn__dot"></span>Go to downloads</a>
+              </div>
             </div>
           </div>
-        </section>
 
-        <!-- CLIENTS -->
-        <section class="cv__section">
-          <span class="section-label">Selected clients &amp; collaborations</span>
-          <div class="cv__pills">
-            <span class="cv__pill cv__pill--accent">McLaren Automotive</span>
-            <span class="cv__pill cv__pill--accent">Joseph Joseph</span>
-            <span class="cv__pill cv__pill--accent">Unilever</span>
-            <span class="cv__pill cv__pill--accent">Bosch Appliances</span>
-            <span class="cv__pill cv__pill--accent">Victoria and Albert Museum</span>
-            <span class="cv__pill cv__pill--accent">Royal Air Force</span>
-            <span class="cv__pill cv__pill--accent">Wavetec</span>
-            <span class="cv__pill cv__pill--accent">Valkyrie Industries</span>
-            <span class="cv__pill cv__pill--accent">Sensate</span>
-            <span class="cv__pill cv__pill--accent">Flowbio</span>
-            <span class="cv__pill cv__pill--accent">Gov.uk</span>
-            <span class="cv__pill cv__pill--accent">BBC</span>
+          <div class="gantt">
+            <h2>My career, as a project plan</h2>
+            <p>Roles overlap because I often ran them side by side.</p>
+            <div class="gantt__axis" id="gantt-axis"></div>
+            <div class="gantt__rows" id="gantt-rows"></div>
           </div>
-        </section>
 
-        <!-- DOWNLOAD CV -->
-        <a class="cv__download" href="https://drive.google.com/uc?export=download&id=1Xxz7ggmuYR0mZjxwkaXX6XLC6cXVgMj-" target="_blank" rel="noopener noreferrer">Download CV (PDF) &darr;</a>
-      </div>
-    </section>
+          <div class="cv__grid">
+            <div>
+              <h2>Experience</h2>
 
-    <!-- PROJECT VIEWS — built by JS from PROJECTS data below -->
+              <div class="job">
+                <div class="job__head"><h3>Founder and studio lead</h3><span class="job__date">2015 – now</span></div>
+                <p class="job__org">Makers Department, London and Lisbon</p>
+                <ul>
+                  <li>Founded and built an industrial design consultancy for clients including McLaren Automotive, Joseph Joseph and Unilever, and startups including Valkyrie Industries, Sensate and Flowbio.</li>
+                  <li>Grew the team from one to five people between 2018 and 2022, running three to four projects at once with stand-ups, weekly planning and budget and timeline tracking, and training each designer one to one.</li>
+                  <li>Set and held quality standards across every project, linking client, design team, engineers and manufacturing partners.</li>
+                  <li>Owned the commercial side of client relationships: negotiation, budgets, risk and liability. Advised on DFM, certifications and IP strategy.</li>
+                </ul>
+              </div>
+
+              <div class="job">
+                <div class="job__head"><h3>Freelance with studios and agencies</h3><span class="job__date">2017 – 2026</span></div>
+                <p class="job__org">Working inside other teams</p>
+                <ul>
+                  <li>UNIT9, for Škoda (2026): industrial designer and head of fabrication on the DuoBell, from research to production.</li>
+                  <li>Hammond Studios with KMI, for Ted Baker (2017–2018): lead industrial designer on the 88 fragrance bottle range, launched worldwide in 2019.</li>
+                  <li>Fuse (2022): prototype manager, taking an interactive motion-sensing wand from concept to working demo.</li>
+                </ul>
+              </div>
+
+              <div class="job">
+                <div class="job__head"><h3>Designer to operations manager, McLaren programme</h3><span class="job__date">2013 – 2024</span></div>
+                <p class="job__org">Hyphen Design Ltd, then through my own studio, for McLaren Automotive</p>
+                <ul>
+                  <li>Joined Hyphen as a junior industrial designer on client work including Bosch Appliances, McLaren, Tangle Teezer and Dishmatic, then took over McLaren's dealership configuration tools programme.</li>
+                  <li>Ran it end to end: UK and Chinese suppliers, an in-house assembly team of up to three in London, quality control, and a coded packing and tracking system for about 130 kits a year across roughly 120 dealerships.</li>
+                </ul>
+              </div>
+
+              <div class="job">
+                <div class="job__head"><h3>Designer and shareholder</h3><span class="job__date">2020 – 2025</span></div>
+                <p class="job__org">Innotrend Ltd, trading as PurePods, London</p>
+                <ul>
+                  <li>Designed and engineered water-filtering products, managing overseas manufacturing partners through prototyping and scale-up.</li>
+                  <li>Ran day-to-day operations: sales channels, inventory, customer service and marketing.</li>
+                </ul>
+              </div>
+
+              <div class="job">
+                <div class="job__head"><h3>Tutor, project management for creatives</h3><span class="job__date">2023</span></div>
+                <p class="job__org">Kingston University, Creative Industries department, part-time</p>
+                <ul>
+                  <li>Taught project management to first- and second-year media production and marketing students, 30 to 35 at a time in teams of five, on live briefs from the BBC, Gov.uk and others. Some projects became real and some students won placements.</li>
+                </ul>
+              </div>
+
+              <div class="job">
+                <div class="job__head"><h3>Industrial design freelancer</h3><span class="job__date">2013 – 2015</span></div>
+                <p class="job__org">London</p>
+                <ul>
+                  <li>Delivered independent design work for international clients, including multi-year support to Magnitone and packaging development for Re-Cleanse.</li>
+                  <li>Worked within a small engineering team on the UK's first self-balancing personal transport product.</li>
+                </ul>
+              </div>
+
+              <p class="cv__earlier">Earlier: product design intern at Paul Cocksedge Studio (2012–2013) and exhibition assistant at MUDE Lisboa (2010–2011).</p>
+            </div>
+
+            <div class="side">
+              <div>
+                <h2>What I'm good at</h2>
+                <div class="chips">
+                  <span>Project and team management</span><span>Client and supplier handling</span><span>Budgets and contracts</span>
+                  <span>Design for manufacture</span><span>Certifications</span><span>IP, design rights and patents</span>
+                  <span>Design mentoring</span><span>Prototyping</span><span>3D printing: FDM, SLA, SLS</span>
+                  <span>SolidWorks</span><span>Fusion 360</span><span>Rhino</span>
+                </div>
+              </div>
+              <div>
+                <h2>Education</h2>
+                <p><strong>Design degree (Licenciatura), Industrial and Product Design</strong>Universidade Técnica de Lisboa, 2008–2011</p>
+                <p><strong>SolidWorks 3D CAD, Level B (Advanced)</strong>2010</p>
+              </div>
+              <div>
+                <h2>Languages</h2>
+                <p>Portuguese, native<br>English, full professional<br>Spanish, proficient<br>French, elementary</p>
+              </div>
+              <div>
+                <h2>Contact</h2>
+                <p>Lisbon, Portugal<br><a href="mailto:contact@fabiosalvador.com" style="border-bottom:2px solid var(--punch)">contact@fabiosalvador.com</a><br><a href="https://www.linkedin.com/in/fabio-a-salvador" target="_blank" rel="noopener noreferrer" style="border-bottom:2px solid var(--punch)">linkedin.com/in/fabio-a-salvador</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- PROJECT PAGES: built by the script from PROJECTS below -->
     <div id="project-views"></div>
 
   </main>
 
+  <footer class="wrap foot">
+    <span>Fábio Salvador, Lisbon</span>
+    <span id="foot-year"></span>
+  </footer>
+
   <script>
     /* ══════════════════════════════════════════════════════════════
-       PROJECT DATA — edit everything in this one block.
-       Image files live in images/projects/<slug>/ :
-         thumb.jpg  300 x 200   (navigator thumbnail)
-         card.jpg   1200 x 800  (home card)
-         hero.jpg   1800 x 1200 (project page image)
-       Optional fields:
-         video: 'YOUTUBE_ID'  -> replaces the hero image with an embedded player
-         links: [{ label, url }]  -> pill links under More information
-       TEXT LIMITS (characters incl. spaces):
-         navDesc: 45 | cardText: 100 | aboutProject: 550 | moreInfo: 350
+       EDIT HERE
+       BOOKING_URL: paste your booking link between the quotes.
+                    While it is empty, the "Book a chat" button opens an email.
+       PROJECTS:    one block per project. Images live in images/projects/<slug>/
+                      thumb.jpg 300x200 | card.jpg 1200x800 | hero.jpg 1800x1200
+                    lead: true      -> shown large under "Selected work"
+                    noImage: true   -> shows a dotted panel until you add photos;
+                                       add the three images, then delete that line.
        ══════════════════════════════════════════════════════════════ */
+    const BOOKING_URL = 'https://calendar.app.google/cmpUbV5dyPX8Vij29';
+
     const PROJECTS = [
+      {
+        slug: 'mclaren-configurator', lead: true, cardVideo: true,
+        films: { title: 'In the workshop', items: [`A full batch of paint samples on the line`] },
+        title: 'McLaren dealership tools',
+        via: 'via Hyphen Design',
+        role: 'Designer to operations manager',
+        years: '2013 – 2024',
+        client: 'McLaren Automotive',
+        stat: '130', statLabel: 'kits a year, new and updated',
+        cardText: 'Eleven years on the sample kits McLaren dealers use to show paint, leather and trim. I started on the design and ended up running the assembly line, the suppliers and the logistics behind it.',
+        gallery: [`Checking a kit against its dealer's list before packing`, `A batch of paint samples ready for assembly`, `Hand-finishing samples in the London workshop`, `A finished kit in a McLaren dealership`],
+        brief: `McLaren dealers need a physical sample of every paint, leather and trim option, presented so it feels right next to the car. And the samples have to stay current: colours get retired, new paints and leathers arrive, dealerships open and close.`,
+        myRole: `I joined the programme at Hyphen Design as a junior designer, doing sketches, CAD and prototypes. Over time I took over the whole operation and carried it into my own studio: suppliers, assembly, quality, packing and shipping.`,
+        howIRanIt: [
+          `I started on my own, assembling parts and managing suppliers myself. From 2015 I hired people to assemble, and we worked as a team of three in bursts: each order meant two to three months of solid build before release, every year or two.`,
+          `Parts came from suppliers across the UK and China (leather, paint, castings, plastics, carbon fibre, screen print, foam) and met on one assembly line in London.`,
+          `The hardest part was the system, not the parts. Some dealers needed their own colours, so many kits were bespoke, and a closing dealership's kit couldn't simply go to a new one. I designed the process from scratch: checks before packing, a code for every box, where each label sits, how boxes were sized and packed, and shared tracking sheets so warehouses and distributors sent each kit to the right place.`,
+          `Quality was constant work. When the epoxy holding the sample bases turned brittle and bases started coming loose in use, we tested alternatives and replaced it.`,
+          `Alongside the main kits we produced mobile kits that dealers took to clients' homes (until 2015) and magnetic car samples (until about 2020).`
+        ],
+        outcome: `The programme grew with McLaren's network from about 60 to about 120 dealerships worldwide, with around 130 kits a year going out new or updated. McLaren kept me on to run it until 2024.`,
+        links: [
+          { label: 'Behance', url: 'https://www.behance.net/gallery/226644077/McLaren-Automotive-Dealership-Configuration-Tools' }
+        ]
+      },
+      {
+        slug: 'skoda-duo-bell', lead: true, cardVideo: true,
+        films: { title: 'In the workshop', items: [`Checking a modified dome on the bench`, `The printed hammer mechanism, in hand`] },
+        title: 'Škoda DuoBell',
+        via: 'via UNIT9',
+        role: 'Industrial designer and head of fabrication',
+        years: '2026',
+        client: 'Škoda',
+        stat: '750–780 Hz', statLabel: 'the gap in noise-cancelling it rings through',
+        cardText: 'A bicycle bell with no chips or batteries, tuned to cut through noise-cancelling headphones. I joined UNIT9\'s team and took it from idea to production in a few months.',
+        gallery: [`Off-the-shelf parts on the bench, ready to reverse-engineer`, `Simulating how the dome vibrates, around 753 Hz`, `Modifying a dome in the workshop`, `An early printed prototype for physical testing`],
+        brief: `Škoda wanted a bicycle bell that headphones can't cancel out. Research with the University of Salford found a blind spot in noise-cancelling algorithms between 750 and 780 Hz, and the bell had to ring exactly there, with no batteries, Bluetooth or chips.`,
+        myRole: `I worked inside UNIT9's agency team of five as industrial designer and head of fabrication, alongside their design engineer and a CAD designer, with a workshop handling manufacture. I managed the mechanical design, brought in the university research and contracted the suppliers through to production.`,
+        howIRanIt: [
+          `The real decision was what to make and what to buy. New bell domes would mean stamping, and stamping means tooling, which the timeline couldn't absorb. So we sourced existing components on the open market, reverse-engineered them and modified them.`,
+          `The dome stayed exactly as we found it, same steel, same shape, same thickness, because that's where the sound comes from. Everything around it was adapted or made new, including a secondary resonator and a hammer that strikes in an irregular rhythm noise-cancelling can't predict.`,
+          `We went to physical testing as early as we could, the moment we had something we thought might work, instead of trusting simulation.`
+        ],
+        outcome: `From idea to production in a few months. Launched in April 2026, released patent-free, now made in limited batches, and covered by Cyclingnews, BikeRadar and T3.`,
+        links: []
+      },
+      {
+        slug: 'playforever', lead: true,
+        title: 'Playforever collector models',
+        via: '',
+        role: 'Sourcing, assembly and production lead',
+        years: '2019 – 2025',
+        client: 'Playforever',
+        stat: '20–50', statLabel: 'walnut models a year, plus about five Grand Prix pieces',
+        cardText: 'Small-series model cars for collectors, in solid walnut and machined, painted parts. I ran sourcing across Asia and the UK, hand assembly in London, quality, packaging and shipping.',
+        gallery: [`Fitting trim to a Grand Prix model by hand`, `Chassis and wheels ready for assembly`, `A batch of walnut models before final checks`, `A finished model in its fitted packaging`],
+        brief: `Playforever makes limited series of high-value model cars for collectors who notice everything: the joints, the paint, the way the box opens.`,
+        myRole: `I handled sourcing and production for the whole line, ran final assembly in-house in London, and owned quality, packaging and distribution.`,
+        howIRanIt: [
+          `Two lines ran side by side. Walnut models, CNC-machined from solid walnut in the UK and finished with plastic bases and wheels, at 20 to 50 a year. Grand Prix models, machined from solid and painted by suppliers in Asia, at about five a year, with trim glued on by hand.`,
+          `Every part arrived in London and was assembled in-house. At these volumes the finish depends on whoever is holding the glue, so I kept it close.`,
+          `Quality meant checking every joint and surface before packing. A scratch got repolished; a part that wasn't right got remade.`,
+          `The models are heavy, so I designed the packaging too: foam cages that stop the cars moving or rubbing in transit, made in the UK. Then I shipped each one to its buyer.`
+        ],
+        outcome: `Six years of collector releases, with every piece checked by hand before it left the workshop.`,
+        links: []
+      },
+      {
+        slug: 'dishmatic', img: 'dishmatic-mk5', lead: true,
+        films: { title: 'On the factory floor', items: [`The robot lifting Glide parts out of the mould`] },
+        title: 'Dishmatic',
+        via: '',
+        role: 'Industrial designer and development partner',
+        years: '2013 – 2024',
+        client: 'Dishmatic (EasyDo, now Libman Brands)',
+        stat: '6 in 10', statLabel: 'UK homes have a Dishmatic',
+        cardText: 'Ten years helping the UK\'s favourite dish brush brand develop new products and make them cheaper to produce, up to the launch of Glide, a fully injection-moulded brush.',
+        gallery: [`Foam models for exploring handle shapes`, `The Glide injection mould`, `Glide parts in the tool`, `Handles and refills in production`],
+        brief: `Dishmatic is in 6 out of 10 UK homes. The founder needed new products that could run at that scale, and existing ones that cost less to make, without losing what loyal users like about them.`,
+        myRole: `I started on the account at Hyphen Design and carried it into my own studio from 2015, continuing after the company was bought by Libman. I worked as industrial designer and development partner to the founder: coming up with ideas, then engineering them with the toolmakers and Dishmatic's own factory.`,
+        howIRanIt: [
+          `Production engineering: thinner walls and better draft angles so parts release cleanly from the tool, with fewer defects and lower cost.`,
+          `Glide, a fully injection-moulded dish brush with a new kind of bristle, was the biggest challenge. Drawing on my bristle work for Tangle Teezer, I had a small tool made to mould test plaques of bristles in different plastic grades, glued them to 3D-printed bases, and tested how each grade held up after real washing-up.`,
+          `Then came making it toolable: working closely with the manufacturers to find the limits of what the tooling could produce, and designing to those limits.`
+        ],
+        outcome: `Glide launched as a hit, and its launch coincided with Libman's acquisition of Dishmatic, a milestone for the brand. The Dishmatic family runs at over four million handles a year.`,
+        links: [
+          { label: 'Dishmatic', url: 'https://www.dishmatic.com/' },
+          { label: 'Libman', url: 'https://www.libman.com/products/dishmatic-dish-wand' }
+        ]
+      },
+      {
+        slug: 'stretchsense',
+        title: 'StretchSense',
+        navDesc: 'Wearable tech, form and styling',
+        role: 'Industrial design lead',
+        years: '2026',
+        client: 'StretchSense',
+        aboutProject: `Headed the exploratory phase on form factor and styling for StretchSense's latest release, and worked out how the technology could be built into a wearable. From there I led the design and manufacturing teams to a solution that is now in pre-production.`,
+        moreInfo: `Wearable technology, where soft goods meet electronics. My role covered the industrial design direction and the handover into manufacturing.`,
+        links: []
+      },
       {
         slug: 'infraway-l1',
         title: 'Infraway L1',
-        navDesc: 'Wearable Infrared Therapy',
-        cardText: 'IoT heat-therapy wearable fusing FIR bioceramic textiles with app-controlled dual-heat electronics.',
-        aboutProject: `The L1 sits where soft goods meet electronics — one of the hardest categories in industrial design. The brief: professional-grade recovery in a form you forget you're wearing. At under an inch thick and 1.5 lbs, the L1 combines a 4-way stretch antimicrobial fabric embedded with far-infrared bioceramics and a patented dual-heat system that penetrates 75 mm below the skin. Flexible heating zones, battery placement and strap architecture were resolved around the body's movement, while Bluetooth app control keeps the hardware interface minimal.`,
+        navDesc: 'Wearable infrared therapy',
+        aboutProject: `The L1 sits where soft goods meet electronics, one of the hardest categories in industrial design. The brief: professional-grade recovery in a form you forget you're wearing. At under an inch thick and 1.5 lbs, the L1 combines a 4-way stretch antimicrobial fabric embedded with far-infrared bioceramics and a patented dual-heat system that penetrates 75 mm below the skin. Flexible heating zones, battery placement and strap architecture were resolved around the body's movement, while Bluetooth app control keeps the hardware interface minimal.`,
         moreInfo: `Developed under Thunderbolt Wearables with the guidance of Jacob Skinner. Patented Dual-Heat Technology; launch covered by PRWeb.`,
-        links: [
-          { label: 'The Infraway', url: 'https://theinfraway.com/' }
-        ]
+        links: [ { label: 'The Infraway', url: 'https://theinfraway.com/' } ]
       },
       {
         slug: 'taur-scooter',
         title: 'Taur Scooter',
-        navDesc: 'The Scooter Built for the City',
-        cardText: 'Forward-facing e-scooter that made stability an industry standard. Red Dot and Good Design 2021.',
-        aboutProject: `Taur arrived as a functional prototype — two wheels, welded pipes, a motor and battery cells. Our role was to turn it into a confident, road-ready product. The defining move: a forward-facing foot platform giving riders a stable, natural stance, since adopted across the industry. Lean, intense design sprints — sketching, CAD, CMF detailing and visualisation — considered manufacturing constraints from day one, handing engineering a smooth path to production. The result is robust, characteristic, and recognisable from a distance.`,
+        navDesc: 'The scooter built for the city',
+        aboutProject: `Taur arrived as a functional prototype: two wheels, welded pipes, a motor and battery cells. Our role was to turn it into a confident, road-ready product. The defining move: a forward-facing foot platform giving riders a stable, natural stance, since adopted across the industry. Lean, intense design sprints (sketching, CAD, CMF detailing and visualisation) considered manufacturing constraints from day one, handing engineering a smooth path to production. The result is robust, characteristic, and recognisable from a distance.`,
         moreInfo: `Good Design Award 2021 and Green Good Design Award 2021 winner. Fully funded on Kickstarter in 3 days (£253k from 318 backers); over £1M raised in seed funding. First full review by Rider Guide; Taur II campaign raised a further $280k.`,
         links: [
           { label: 'Taur', url: 'https://taur.com/' },
@@ -706,9 +871,8 @@
       {
         slug: 'valkyrie-industries',
         title: 'Valkyrie Industries',
-        navDesc: 'Haptic Suit for Virtual Reality',
-        cardText: 'A VR suit that gives physical feedback through electro-stimulation, built with a London startup.',
-        aboutProject: `At Valkyrie Industries I joined a small team of software, electronics and garment specialists to help develop BiFrost, a VR suit that gives physical feedback through electro-stimulation in the sleeves and gloves. Alongside Piers Thomas, a former Patagonia designer, we worked on a layered fabric with electrodes placed along the wearer's muscles. I also designed the fingertip mechanism, which gives touch sensations while still letting you hold real objects, and the housings for the electronics — made to come apart easily for cleaning and repair.`,
+        navDesc: 'Haptic suit for virtual reality',
+        aboutProject: `At Valkyrie Industries I joined a small team of software, electronics and garment specialists to help develop BiFrost, a VR suit that gives physical feedback through electro-stimulation in the sleeves and gloves. Alongside Piers Thomas, a former Patagonia designer, we worked on a layered fabric with electrodes placed along the wearer's muscles. I also designed the fingertip mechanism, which gives touch sensations while still letting you hold real objects, and the housings for the electronics, made to come apart easily for cleaning and repair.`,
         moreInfo: `We got there through many rounds of rapid prototyping and hand-made models. The working suit helped the startup raise its next rounds of investment. The technology was patented, and Valkyrie has since developed it into their eir bands, EMS wearables now used in rehab clinics and universities in the UK and EU.`,
         links: [
           { label: 'Valkyrie Industries', url: 'https://www.valkyrie-vr.com/' },
@@ -718,14 +882,13 @@
       {
         slug: 'sensate-1',
         title: 'Sensate 1',
-        navDesc: 'Infrasonic Calm, By Design',
-        cardText: 'A pebble-inspired infrasonic device that tones the vagus nerve through bone conduction.',
-        aboutProject: `How should technology that calms you look and feel? Sensate transduces low-frequency sound through the sternum to stimulate the vagus nerve, easing the nervous system from high alert into rest. Through iterative design sprints with Thrive Wearables we explored dozens of form factors, landing on a shape inspired by the pebbles of Brighton's beaches — nature's own lesson in calm through simplicity. The soft, weighted form invites placement on the chest, while discreet proportions keep this piece of medical-grade tech quietly personal.`,
+        navDesc: 'Infrasonic calm, by design',
+        aboutProject: `How should technology that calms you look and feel? Sensate transduces low-frequency sound through the sternum to stimulate the vagus nerve, easing the nervous system from high alert into rest. Through iterative design sprints with Thrive Wearables we explored dozens of form factors, landing on a shape inspired by the pebbles of Brighton's beaches, nature's own lesson in calm through simplicity. The soft, weighted form invites placement on the chest, while discreet proportions keep this piece of medical-grade tech quietly personal.`,
         moreInfo: `Funded 300%+ on Indiegogo; featured in Vogue and The Times, and named The Times Health Tech Invention of the Year. Studies show a 48% stress reduction within 28 days and up to an hour of extra sleep per night. Now in its second generation.`,
         links: [
           { label: 'Sensate', url: 'https://www.getsensate.com/' },
           { label: 'Indiegogo', url: 'https://www.indiegogo.com/projects/sensate-the-shortcut-to-reduce-stress-and-anxiety' },
-          { label: 'How Does It Work?', url: 'https://www.youtube.com/watch?v=dgiREGtnv2c' },
+          { label: 'How does it work?', url: 'https://www.youtube.com/watch?v=dgiREGtnv2c' },
           { label: 'Ben Greenfield', url: 'https://bengreenfieldlife.com/ben-recommends/sensate/' },
           { label: 'Dave Asprey', url: 'https://daveaspreybox.com/your-vagus-nerve/' }
         ]
@@ -733,19 +896,15 @@
       {
         slug: 'wavetec-du',
         title: 'Wavetec Du',
-        navDesc: 'Self-Service Kiosks',
-        cardText: 'Premium modular self-service kiosks bringing biometric SIM dispensing to telecom operator du.',
+        navDesc: 'Self-service kiosks',
         aboutProject: `Public-facing hardware must survive thousands of daily interactions while looking effortless. For Wavetec's kiosks deployed with UAE operator du, we designed a premium, approachable architecture around demanding internals: SIM dispensing, cash handling, card printing and fingerprint, iris and facial biometrics. The modular sheet-metal construction lets one design language flex across configurations, while screen angles, reach zones and accessibility shaped every surface. Robust CMF choices balance durability, cleanability and retail presence.`,
         moreInfo: `Wavetec kiosks serve banking and telecom clients worldwide, with du among its flagship operators. The next-generation range launched across the GCC, covered by Zawya and Kiosk Marketplace, delivering 24/7 SIM issuance with real-time KYC.`,
-        links: [
-          { label: 'Wavetec', url: 'https://www.wavetec.com/' }
-        ]
+        links: [ { label: 'Wavetec', url: 'https://www.wavetec.com/' } ]
       },
       {
         slug: 'seergrills-perfecta',
         title: 'SeerGrills Perfecta',
-        navDesc: 'The First AI-Powered Grill',
-        cardText: 'CES Innovation Award-winning AI grill in glass and stainless steel. A perfect ribeye in 90 seconds.',
+        navDesc: 'The first AI-powered grill',
         aboutProject: `The Perfecta proves technical complexity and aesthetic restraint can coexist. Tasked with the interface and exterior design of the world's first AI-powered grill, we wrapped its novel vertical dual-burner configuration in pure geometric forms of glass and stainless steel, elevated by powder coating, brushed and spark-textured finishes. Minimal branding preserves an enigmatic, monolithic presence. Close dialogue between design, engineering and manufacturing took the first working models from concept to reality in a remarkably short timeframe.`,
         moreInfo: `Winner, CES Innovation Award 2024. Over $1M in orders during the first pre-launch campaign. Featured on Fox News, Engadget and TechHive; now shipping. NeuralFire AI cooks a 1-inch ribeye in 90 seconds.`,
         links: [
@@ -754,37 +913,14 @@
           { label: 'Engadget', url: 'https://www.engadget.com/home/kitchen-tech/the-ai-powered-perfecta-from-seergrills-is-now-shipping-after-its-ces-2024-debut-163000474.html' },
           { label: 'TechHive', url: 'https://www.techhive.com/article/2195266/seergrills-peffecta-grill-ces-2024.html' },
           { label: 'YouTube', url: 'https://www.youtube.com/channel/UC3AuQgsmfyvh6pjSXNmJWlQ' },
-          { label: 'A Robot Cooked My Steak', url: 'https://www.youtube.com/watch?v=-oLvxWQyALw' }
-        ]
-      },
-      {
-        slug: 'skoda-duo-bell',
-        title: 'Skoda Duo Bell',
-        navDesc: 'Acoustic Safety Design',
-        cardText: 'A chip-free bicycle bell acoustically engineered to cut through noise-cancelling headphones.',
-        aboutProject: `The DuoBell is an analogue answer to a digital problem. Research with the University of Salford identified a blind spot in active noise-cancelling algorithms between 750–780 Hz — and the bell is engineered to strike exactly there. A secondary resonator and a specialised hammer mechanism produce rapid, irregular strikes that ANC software cannot predict or suppress. No batteries, no Bluetooth, no chips: pure mechanical and acoustic engineering in a minimal, handlebar-ready form.`,
-        moreInfo: `Designed while freelancing as part of the UNIT9 agency team for Škoda. Developed with the University of Salford, launched April 2026 and released patent-free. Covered by Cyclingnews, BikeRadar, T3 and urdesignmag; full story on Škoda Storyboard and We Love Cycling. A modern safety problem solved with zero electronics.`,
-        links: []
-      },
-      {
-        slug: 'dishmatic-mk5',
-        title: 'Dishmatic Mk5',
-        navDesc: 'A Kitchen Icon, Evolved',
-        cardText: "UK's favourite dish brush — found in 6 of 10 British homes.",
-        aboutProject: `Redesigning an icon is harder than starting fresh. The Dishmatic handle lives in 6 out of 10 UK households, so the MK5 had to improve ergonomics, fluid dispensing and assembly without alienating millions of loyal users. We refined the grip geometry and click-together refill interface, pushing tool-making and moldflow constraints to keep the part count low and the assembly intuitive. Material selection continued the brand's sustainability trajectory — the Dishmatic family already exceeds 60% recycled raw material content.`,
-        moreInfo: `The original Dishmatic sits in the Design Museum's permanent collection in the British Favourites display. Over four million handles produced yearly by EasyDo (now Libman Brands), stocked across the world including the United States and Australia.`,
-        links: [
-          { label: 'Dishmatic', url: 'https://www.dishmatic.com/' },
-          { label: 'Libman', url: 'https://www.libman.com/products/dishmatic-dish-wand' },
-          { label: 'Shop', url: 'https://shop.dishmatic.com/collections/all-products' }
+          { label: 'A robot cooked my steak', url: 'https://www.youtube.com/watch?v=-oLvxWQyALw' }
         ]
       },
       {
         slug: 'magnitone-barefaced',
         title: 'Magnitone BareFaced',
-        navDesc: 'Ergonomic Beauty Tech',
-        cardText: 'Award-winning Vibra-Sonic cleansing brush — soft-touch CMF in a fully sealed waterproof enclosure.',
-        aboutProject: `How do you redesign a category that stopped evolving? Skin cleansing tools had settled into the same pistol-grip formula — awkward and clinical for such a delicate ritual. Asked to change the face of Magnitone's new generation, we rethought how the device is held: smooth, organic forms that nestle in the palm, bringing the hand closer to the skin and the gesture closer to the ritual. Building around the existing internals, we iterated through foam models, rapid prototypes and user validation until comfort and style met in one iconic silhouette.`,
+        navDesc: 'Ergonomic beauty tech',
+        aboutProject: `How do you redesign a category that stopped evolving? Skin cleansing tools had settled into the same pistol-grip formula, awkward and clinical for such a delicate ritual. Asked to change the face of Magnitone's new generation, we rethought how the device is held: smooth, organic forms that nestle in the palm, bringing the hand closer to the skin and the gesture closer to the ritual. Building around the existing internals, we iterated through foam models, rapid prototypes and user validation until comfort and style met in one iconic silhouette.`,
         moreInfo: `5-star rated at Boots and Lookfantastic; featured in Vogue and Cosmopolitan. Winner of the Beauty Shortlist Awards 2019, Gold Beauty Awards 2015 and Bronze Beauty Awards 2016; Good Housekeeping Institute Approved. Magnitone is now an award-winning brand and a top-three leader of the UK beauty market.`,
         links: [
           { label: 'Magnitone', url: 'https://www.magnitone.co.uk/' },
@@ -793,24 +929,11 @@
         ]
       },
       {
-        slug: 'mclaren-configurator',
-        title: 'McLaren Configurator',
-        navDesc: 'Ten Years of Dealership Tools',
-        cardText: 'Tactile sample tools for McLaren dealerships — ten years across design, production and delivery.',
-        aboutProject: `I worked on McLaren's dealership configuration tools for about ten years, through Hyphen Design. I started as a junior designer, doing sketches, CAD and prototypes for the tactile sample tools dealers use to show customers paint, leather and trim options. Over time I took over the project management side — coordinating suppliers, keeping track of stock, and making sure production and deliveries reached over 100 dealerships around the world. The tools had to feel right next to the cars, so materials and finishes were always held to a high standard. After I left, McLaren kept me on as a consultant for new versions and further rollout.`,
-        moreInfo: `The collaboration ran from 2013 to 2023, covering design, manufacturing, distribution and ongoing updates. The tools are used in dealerships during bespoke builds and high-value sales, and the formats we developed are still in use today. Most of the work was done in SolidWorks and KeyShot.`,
-        links: [
-          { label: 'Behance', url: 'https://www.behance.net/gallery/226644077/McLaren-Automotive-Dealership-Configuration-Tools' },
-          { label: 'McLaren', url: 'https://cars.mclaren.com/' }
-        ]
-      },
-      {
         slug: 'purepods',
         title: 'PurePods',
-        navDesc: 'Refillable Water Filters',
-        cardText: 'A refillable water filter I designed and helped sell as a shareholder in a small London startup.',
-        aboutProject: `PurePods started as a design job and became a business I part-owned through Innotrend Ltd. The product is a patented refillable cartridge that fits Brita Maxtra jugs — you replace only the filtering medium and keep the plastic parts, which cuts waste and cost. I did the product design and mechanical development with our overseas manufacturers, and along the way ended up involved in most of the rest too: pricing, sales, running the Amazon and Shopify stores, marketing, and logistics across the UK and EU.`,
-        moreInfo: `We launched in 2021 and sold through Amazon UK and purepods.net. Over five years it taught me, in a very practical way, what it takes to get a consumer product made, shipped and sold — and to keep it going with a small team and a small budget.`,
+        navDesc: 'Refillable water filters',
+        aboutProject: `PurePods started as a design job and became a business I part-owned through Innotrend Ltd. The product is a patented refillable cartridge that fits Brita Maxtra jugs: you replace only the filtering medium and keep the plastic parts, which cuts waste and cost. I did the product design and mechanical development with our overseas manufacturers, and along the way ended up involved in most of the rest too: pricing, sales, running the Amazon and Shopify stores, marketing, and logistics across the UK and EU.`,
+        moreInfo: `We launched in 2021 and sold through Amazon UK and purepods.net. Over five years it taught me, in a very practical way, what it takes to get a consumer product made, shipped and sold, and to keep it going with a small team and a small budget.`,
         links: [
           { label: 'PurePods', url: 'https://purepods.net/' },
           { label: 'Amazon UK', url: 'https://www.amazon.co.uk/dp/B097RD9KHY' },
@@ -819,104 +942,135 @@
       }
     ];
 
-    /* ── BUILD NAVIGATOR ── */
-    const navList = document.getElementById('nav-list');
+    /* ── helpers ── */
+    const $ = id => document.getElementById(id);
+    const media = (p, size) => p.noImage
+      ? `<div class="pending"><b>${p.title.split(' ')[0]}</b><span>Photos on the way</span></div>`
+      : `<img src="images/projects/${p.img || p.slug}/${size}.jpg" alt="${p.title}" loading="lazy">`;
 
-    navList.insertAdjacentHTML('beforeend', `
-      <a class="nav-item" href="#about" data-route="about">
-        <img class="nav-item__thumb" src="images/about/thumb.jpg" alt="">
-        <span class="nav-item__text">
-          <span class="nav-item__title">About Me</span>
-          <span class="nav-item__desc">Industrial Designer &amp; Maker</span>
-        </span>
-      </a>`);
-
-    PROJECTS.forEach(p => {
-      navList.insertAdjacentHTML('beforeend', `
-        <a class="nav-item" href="#${p.slug}" data-route="${p.slug}">
-          <img class="nav-item__thumb" src="images/projects/${p.slug}/thumb.jpg" alt="">
-          <span class="nav-item__text">
-            <span class="nav-item__title">${p.title}</span>
-            <span class="nav-item__desc">${p.navDesc}</span>
-          </span>
-        </a>`);
-    });
-
-    /* ── BUILD HOME CARDS ── */
-    const cards = document.getElementById('cards');
-    PROJECTS.forEach(p => {
-      cards.insertAdjacentHTML('beforeend', `
-        <a class="card" href="#${p.slug}">
-          <img class="card__img" src="images/projects/${p.slug}/card.jpg" alt="${p.title}">
-          <span class="card__title">${p.title}</span>
-          <span class="card__text">${p.cardText}</span>
-        </a>`);
-    });
-
-    /* ── BUILD PROJECT VIEWS ── */
-    const projectViews = document.getElementById('project-views');
-    PROJECTS.forEach(p => {
-      const media = p.video
-        ? `<div class="project__video">
-             <iframe src="https://www.youtube.com/embed/${p.video}?rel=0"
-                     title="${p.title}" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-                     allowfullscreen></iframe>
-           </div>`
-        : `<img class="project__hero" src="images/projects/${p.slug}/hero.jpg" alt="${p.title}">`;
-
-      const links = (p.links && p.links.length)
-        ? `<div class="panel__links">${p.links.map(l =>
-            `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label} &#8599;</a>`).join('')}</div>`
-        : '';
-
-      projectViews.insertAdjacentHTML('beforeend', `
-        <section class="view" id="view-${p.slug}">
-          ${media}
-          <h1 class="project__title">${p.title}</h1>
-          <div class="panels">
-            <div class="panel">
-              <span class="panel__label">About the project</span>
-              <p class="panel__body">${p.aboutProject}</p>
-            </div>
-            <div class="panel">
-              <span class="panel__label">More information</span>
-              <p class="panel__body">${p.moreInfo}</p>
-              ${links}
-            </div>
+    /* ── selected work ── */
+    PROJECTS.filter(p => p.lead).forEach(p => {
+      $('leads').insertAdjacentHTML('beforeend', `
+        <article class="lead">
+          <a class="lead__media" href="#${p.slug}" aria-label="${p.title}">${p.cardVideo
+            ? `<video class="auto" src="images/projects/${p.img || p.slug}/card.mp4" poster="images/projects/${p.img || p.slug}/card.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>`
+            : media(p, 'card')}</a>
+          <div class="lead__body">
+            ${p.via ? `<span class="lead__via">${p.via}</span>` : ''}
+            <h3><a href="#${p.slug}">${p.title}</a></h3>
+            <p class="lead__role">${p.role}</p>
+            <p class="lead__text">${p.cardText}</p>
+            <p class="lead__stat"><b>${p.stat}</b><span>${p.statLabel}</span></p>
+            <a class="lead__more" href="#${p.slug}">Read the project</a>
           </div>
-        </section>`);
+        </article>`);
     });
 
-    /* ── HASH ROUTING ── */
-    const validRoutes = new Set(['about', ...PROJECTS.map(p => p.slug)]);
+    /* ── more work ── */
+    PROJECTS.filter(p => !p.lead).forEach(p => {
+      $('more').insertAdjacentHTML('beforeend', `
+        <a class="tile" href="#${p.slug}">
+          <div class="tile__img">${media(p, 'card')}</div>
+          <h3>${p.title}</h3>
+          <p>${p.navDesc}</p>
+        </a>`);
+    });
 
-    function route() {
-      const hash = location.hash.replace('#', '');
-      const target = validRoutes.has(hash) ? hash : 'home';
+    /* ── project pages ── */
+    PROJECTS.forEach((p, i) => {
+      const next = PROJECTS[(i + 1) % PROJECTS.length];
+      const facts = [['Role', p.role], ['Client', p.client], ['Through', p.via ? p.via.replace('via ', '') : ''], ['When', p.years]]
+        .filter(f => f[1]).map(f => `<div><dt>${f[0]}</dt><dd>${f[1]}</dd></div>`).join('');
+      const links = (p.links && p.links.length)
+        ? `<div class="proj__links">${p.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label}</a>`).join('')}</div>` : '';
+      $('project-views').insertAdjacentHTML('beforeend', `
+        <div class="view" id="view-${p.slug}">
+          <section class="proj"><div class="wrap">
+            <a class="proj__back" href="#work">Back to all work</a>
+            <div class="proj__media">${media(p, 'hero')}</div>
+            <div class="proj__head">
+              <h1>${p.title}</h1>
+              ${facts ? `<dl class="proj__facts">${facts}</dl>` : ''}
+            </div>
+            ${p.brief ? `
+            <div class="case">
+              <div class="case__row"><h2>The brief</h2><div><p>${p.brief}</p></div></div>
+              <div class="case__row"><h2>My role</h2><div><p>${p.myRole}</p></div></div>
+              <div class="case__row"><h2>How I ran it</h2><div><ul class="case__list">${p.howIRanIt.map(t => `<li>${t}</li>`).join('')}</ul></div></div>
+              ${p.films ? `<div class="case__row"><h2>${p.films.title}</h2><div class="films films--${p.films.items.length}">${p.films.items.map((c, k) => `<figure><video class="auto" src="images/projects/${p.img || p.slug}/film-${k + 1}.mp4" poster="images/projects/${p.img || p.slug}/film-${k + 1}-poster.jpg" muted loop playsinline preload="none"></video><figcaption>${c}</figcaption></figure>`).join('')}</div></div>` : ''}
+              <div class="case__row"><h2>Outcome</h2><div><p class="case__stat"><b>${p.stat}</b><span>${p.statLabel}</span></p><p>${p.outcome}</p>${links}</div></div>
+            </div>` : `
+            <div class="proj__cols">
+              <div><h2>About the project</h2><p>${p.aboutProject}</p></div>
+              <div><h2>More information</h2><p>${p.moreInfo}</p>${links}</div>
+            </div>`}
+            ${p.gallery ? `<div class="gallery">${p.gallery.map((c, k) => `<figure><img src="images/projects/${p.img || p.slug}/process-${k + 1}.jpg" alt="${c}" loading="lazy"><figcaption>${c}</figcaption></figure>`).join('')}</div>` : ''}
+            <div class="proj__next"><span>Next project</span><a href="#${next.slug}">${next.title}</a></div>
+          </div></section>
+        </div>`);
+    });
 
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('is-visible'));
-      const view = document.getElementById(`view-${target}`);
-      (view || document.getElementById('view-home')).classList.add('is-visible');
-
-      document.querySelectorAll('.nav-item').forEach(item => {
-        item.classList.toggle('is-active', item.dataset.route === target);
-      });
-
-      window.scrollTo(0, 0);
+    /* ── silent looping videos: play only while visible, never for reduced motion ── */
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const vids = document.querySelectorAll('video.auto');
+    if (calm) {
+      vids.forEach(v => { v.controls = true; });
+    } else if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => entries.forEach(e => {
+        const v = e.target;
+        if (e.isIntersecting) { if (v.preload === 'none') v.preload = 'auto'; v.play().catch(() => {}); } else { v.pause(); }
+      }), { threshold: 0.25 });
+      vids.forEach(v => io.observe(v));
     }
 
+    /* ── career as a project plan ── */
+    const START = 2008, END = 2027.5, NOW = new Date().getFullYear() + new Date().getMonth() / 12;
+    const pct = y => ((y - START) / (END - START)) * 100;
+    const CAREER = [
+      { from: 2015.75, to: NOW,     label: 'Makers Department', note: 'founder and studio lead', cls: '' },
+      { from: 2013.08, to: 2024.95, label: 'Hyphen Design, McLaren programme', note: 'designer to operations manager', cls: 'punch' },
+      { from: 2020.5,  to: 2025.95, label: 'PurePods', note: 'designer and shareholder', cls: 'grey' },
+      { from: 2023.0,  to: 2023.95, label: 'Kingston University', note: 'tutor', cls: 'grey', right: true },
+      { from: 2013.75, to: 2015.75, label: 'Freelance industrial designer', note: 'London', cls: 'grey' },
+      { from: 2012.4,  to: 2013.08, label: 'Paul Cocksedge Studio', note: 'intern', cls: 'grey' },
+      { from: 2010.4,  to: 2011.6,  label: 'MUDE Lisboa', note: 'exhibition assistant', cls: 'grey' },
+      { from: 2008.7,  to: 2011.5,  label: 'Design degree', note: 'Universidade Técnica de Lisboa', cls: 'edu' }
+    ];
+    for (let y = 2008; y <= 2026; y += 2) {
+      $('gantt-axis').insertAdjacentHTML('beforeend', `<span class="${y % 4 ? 'minor' : ''}" style="left:${pct(y)}%">${y}</span>`);
+    }
+    CAREER.forEach(c => {
+      const right = c.right || pct(c.from) > 62;
+      $('gantt-rows').insertAdjacentHTML('beforeend', `
+        <div class="gantt__row">
+          <div class="gantt__barwrap" style="left:${pct(c.from)}%;width:${Math.max(pct(c.to) - pct(c.from), 1.2)}%"><div class="gantt__bar ${c.cls ? 'gantt__bar--' + c.cls : ''}"></div></div>
+          <span class="gantt__label ${right ? 'gantt__label--right' : ''}" style="left:${right ? pct(c.to) : pct(c.from)}%">${c.label} <em>${c.note}</em></span>
+        </div>`);
+    });
+    $('gantt-rows').insertAdjacentHTML('beforeend', `<div class="gantt__now" style="left:${pct(NOW)}%"></div>`);
+
+    /* ── routing ── */
+    const slugs = new Set(PROJECTS.map(p => p.slug));
+    function route() {
+      let hash = location.hash.replace('#', '');
+      if (hash === 'about') hash = 'cv';               // old links keep working
+      if (hash === 'dishmatic-mk5') hash = 'dishmatic';
+      const view = hash === 'cv' ? 'cv' : slugs.has(hash) ? hash : 'home';
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('is-visible'));
+      $('view-' + view).classList.add('is-visible');
+      document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('is-active', a.dataset.nav === 'cv' && view === 'cv'));
+      const anchor = (view === 'home' && (hash === 'work' || hash === 'contact' || hash === 'downloads' || hash === 'teams' || hash === 'recommendations')) ? $(hash) : null;
+      if (anchor) anchor.scrollIntoView(); else window.scrollTo(0, 0);
+    }
     window.addEventListener('hashchange', route);
     route();
 
-    /* ── LIVE DATE (Lisbon time) ── */
-    function updateDate() {
-      const now = new Date();
-      const opts = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Europe/Lisbon' };
-      const time = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Lisbon' });
-      document.getElementById('live-date').textContent = `${now.toLocaleDateString('en-GB', opts)} · ${time}`;
+    /* ── book a chat ── */
+    if (BOOKING_URL) {
+      document.querySelectorAll('#chat-btn').forEach(a => { a.href = BOOKING_URL; a.target = '_blank'; a.rel = 'noopener noreferrer'; });
     }
-    updateDate();
-    setInterval(updateDate, 30000);
+
+    $('foot-year').textContent = new Date().getFullYear();
   </script>
 
 </body>
