@@ -169,6 +169,12 @@
   @media (max-width: 980px) { .quotes { grid-template-columns: minmax(0, 1fr); } }
 
   /* contact */
+  .source { background: var(--fog); border-radius: 24px; padding: clamp(22px, 3vw, 36px); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px 32px; align-items: center; border-left: 8px solid var(--punch); }
+  .source h2 { font-size: clamp(24px, 2.6vw, 34px); }
+  .source p { margin-top: 10px; max-width: 40em; font-size: 16px; }
+  @media (max-width: 760px) { .source { grid-template-columns: 1fr; } }
+  .foot a { color: var(--stone); border-bottom: 1px solid var(--line); }
+  .foot a:hover { color: var(--ink); border-color: var(--punch); }
   .contact { background: var(--ink); color: #B9B9B4; border-radius: 32px; padding: clamp(28px, 5vw, 64px); display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 32px; align-items: end; }
   .contact h2 { color: var(--white); font-size: clamp(32px, 4.6vw, 64px); letter-spacing: -0.035em; }
   .contact p { margin-top: 16px; max-width: 28em; }
@@ -560,21 +566,34 @@
           </div>
           <div class="dl">
             <div class="dl__item">
-              <a class="dl__thumb" href="downloads/Fabio-Salvador-CV.pdf" download aria-label="Download CV"><img src="images/downloads/cv.jpg" alt="First page of the CV" loading="lazy"></a>
+              <a class="dl__thumb" href="downloads/Fabio-Salvador-CV.pdf" download data-goatcounter-click="download-cv" aria-label="Download CV"><img src="images/downloads/cv.jpg" alt="First page of the CV" loading="lazy"></a>
               <div>
                 <h3>CV</h3>
                 <p>Two pages. Experience, skills and career timeline.</p>
-                <a class="btn btn--solid" href="downloads/Fabio-Salvador-CV.pdf" download><span class="btn__dot"></span>Download PDF</a>
+                <a class="btn btn--solid" href="downloads/Fabio-Salvador-CV.pdf" download data-goatcounter-click="download-cv"><span class="btn__dot"></span>Download PDF</a>
               </div>
             </div>
             <div class="dl__item">
-              <a class="dl__thumb" href="downloads/Fabio-Salvador-Design-to-Production.pdf" download aria-label="Download Design to production"><img src="images/downloads/proposal.jpg" alt="Cover of Design to production" loading="lazy"></a>
+              <a class="dl__thumb" href="downloads/Fabio-Salvador-Design-to-Production.pdf" download data-goatcounter-click="download-design-to-production" aria-label="Download Design to production"><img src="images/downloads/proposal.jpg" alt="Cover of Design to production" loading="lazy"></a>
               <div>
                 <h3>Design to production</h3>
                 <p>How I work with studios and agencies: projects, engagement and recommendations. 12 pages.</p>
-                <a class="btn btn--solid" href="downloads/Fabio-Salvador-Design-to-Production.pdf" download><span class="btn__dot"></span>Download PDF</a>
+                <a class="btn btn--solid" href="downloads/Fabio-Salvador-Design-to-Production.pdf" download data-goatcounter-click="download-design-to-production"><span class="btn__dot"></span>Download PDF</a>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOURCING: sends people who need suppliers/production to Makers Department -->
+      <section class="sec" id="sourcing" style="padding-top:0">
+        <div class="wrap">
+          <div class="source">
+            <div>
+              <h2>Need suppliers or a factory, not a designer?</h2>
+              <p>Something I'm working on at the moment: through my studio Makers Department, I help companies source and manufacture in Portugal, from supplier selection and tooling to samples, quality control and logistics.</p>
+            </div>
+            <a class="btn btn--solid" href="https://makersdepartment.com/sourcing.html" target="_blank" rel="noopener" data-goatcounter-click="out-sourcing" data-goatcounter-title="Makers Department manufacturing in Portugal"><span class="btn__dot"></span>Manufacturing in Portugal ↗</a>
           </div>
         </div>
       </section>
@@ -724,7 +743,7 @@
   </main>
 
   <footer class="wrap foot">
-    <span>Fábio Salvador, Lisbon</span>
+    <span>Fábio Salvador, Lisbon · Manufacturing in Portugal: <a href="https://makersdepartment.com/sourcing.html" target="_blank" rel="noopener" data-goatcounter-click="out-sourcing-footer">Makers Department</a></span>
     <span id="foot-year"></span>
   </footer>
 
@@ -1059,10 +1078,14 @@
       document.querySelectorAll('.view').forEach(v => v.classList.remove('is-visible'));
       $('view-' + view).classList.add('is-visible');
       document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('is-active', a.dataset.nav === 'cv' && view === 'cv'));
-      const anchor = (view === 'home' && (hash === 'work' || hash === 'contact' || hash === 'downloads' || hash === 'teams' || hash === 'recommendations')) ? $(hash) : null;
+      const anchor = (view === 'home' && (hash === 'work' || hash === 'contact' || hash === 'downloads' || hash === 'teams' || hash === 'recommendations' || hash === 'sourcing')) ? $(hash) : null;
       if (anchor) anchor.scrollIntoView(); else window.scrollTo(0, 0);
     }
     window.addEventListener('hashchange', route);
+    // VISITOR COUNTER (GoatCounter): counts each page, including #cv and project pages
+    window.addEventListener('hashchange', () => {
+      if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: location.pathname + location.hash });
+    });
     route();
 
     /* ── book a chat ── */
@@ -1073,5 +1096,9 @@
     $('foot-year').textContent = new Date().getFullYear();
   </script>
 
+
+  <!-- VISITOR COUNTER: GoatCounter (no cookies, no banner needed). Stats at https://fabiosalvador.goatcounter.com -->
+  <script>window.goatcounter = { path: function () { return location.pathname + location.hash; } };</script>
+  <script data-goatcounter="https://fabiosalvador.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
